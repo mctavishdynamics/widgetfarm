@@ -1,6 +1,6 @@
 .Button {
   &[data-part="button"] {
-    font-family: inherit, sans-serif;
+    font-family: inherit;
 
     display: inline-flex;
     justify-content: center;
