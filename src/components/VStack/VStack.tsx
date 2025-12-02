@@ -1,20 +1,24 @@
 import { clsx } from "clsx";
-import type { HTMLAttributes } from "react";
-import styles from "./VStack.module.css";
+import { type HTMLAttributes, useContext } from "react";
+import { WidgetFarmContext } from "../../WidgetFarmContext.ts";
+import type { WidgetBaseProps } from "../types/WidgetBaseProps.ts";
 
-interface VStackProps extends HTMLAttributes<HTMLDivElement> {
+interface VStackProps extends WidgetBaseProps, HTMLAttributes<HTMLDivElement> {
   gap?: number;
 }
 
 export function VStack(props: VStackProps) {
-  const { gap = 0, style = {}, className = "", ...rest } = props;
+  const { theme, className, gap = 0, style = {}, ...rest } = props;
+
+  const context = useContext(WidgetFarmContext);
+  const activeTheme = theme ?? context.theme;
 
   return (
     <div
       data-scope={"v-stack"}
       data-part={"content"}
       {...rest}
-      className={clsx(styles.VStack, className)}
+      className={clsx(activeTheme.VStack, className)}
       style={{ gap: `${gap}px`, ...style }}
     />
   );

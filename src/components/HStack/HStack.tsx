@@ -1,32 +1,33 @@
 import { clsx } from "clsx";
-import type { HTMLAttributes } from "react";
-import styles from "./HStack.module.css";
+import { type HTMLAttributes, useContext } from "react";
+import { WidgetFarmContext } from "../../WidgetFarmContext.ts";
+import type { WidgetBaseProps } from "../types/WidgetBaseProps.ts";
 
-interface HStackProps extends HTMLAttributes<HTMLDivElement> {
+interface HStackProps extends WidgetBaseProps, HTMLAttributes<HTMLDivElement> {
   gap?: number;
   inline?: boolean;
-  className?: string;
 }
 
 export function HStack(props: HStackProps) {
   const {
-    className = "",
+    theme,
+    className,
     gap = 0,
     inline = false,
     style = {},
     ...rest
   } = props;
 
+  const context = useContext(WidgetFarmContext);
+  const activeTheme = theme ?? context.theme;
+
   return (
     <div
+      data-scope={"h-stack"}
+      data-part={"content"}
+      data-inline={inline}
       {...rest}
-      className={clsx(
-        styles.HStack,
-        {
-          [styles.HStack__Inline]: inline,
-        },
-        className,
-      )}
+      className={clsx(activeTheme.HStack, className)}
       style={{ gap: `${gap}px`, ...style }}
     />
   );

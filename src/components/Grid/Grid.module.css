@@ -1,3 +1,5 @@
 .Grid {
-  display: grid;
+  &[data-part="content"] {
+    display: grid;
+  }
 }

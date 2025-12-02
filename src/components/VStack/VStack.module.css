@@ -1,5 +1,7 @@
 .VStack {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  &[data-part="content"] {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
 }
