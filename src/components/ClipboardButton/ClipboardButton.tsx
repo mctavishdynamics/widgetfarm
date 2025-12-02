@@ -1,6 +1,6 @@
 import { Clipboard } from "@ark-ui/react";
 import { IconCheck, IconClipboard } from "@tabler/icons-react";
-import buttonStyles from "../Button/Button.module.css";
+import buttonStyles from "../Button/themes/kinda-retro-base.module.css";
 import styles from "./ClipboardButton.module.css";
 
 interface ClipboardButtonProps {

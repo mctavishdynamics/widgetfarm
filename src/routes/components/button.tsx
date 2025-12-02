@@ -1,84 +1,61 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Fragment } from "react";
-import { WidgetFarmProvider } from "../../WidgetFarmProvider.tsx";
-import { Badge } from "../../components/Badge/Badge.tsx";
+import { clsx } from "clsx";
+import { TbEye } from "react-icons/tb";
 import {
   Button,
   type ButtonColor,
   type ButtonVariant,
 } from "../../components/Button/Button.tsx";
-import styles from "./styles.module.css";
+import { ButtonProvider } from "../../components/Button/ButtonProvider.tsx";
+import base from "../../components/Button/themes/kinda-retro-base.module.css";
+import light from "../../components/Button/themes/kinda-retro-light.module.css";
+import styles from "./button.module.css";
 
 export const Route = createFileRoute("/components/button")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const COLORS: Array<ButtonColor> = ["default", "red", "green"];
+  const COLORS: Array<ButtonColor> = [
+    "default",
+    "red",
+    "green",
+    "pink",
+    "purple",
+  ];
   const VARIANTS: Array<ButtonVariant> = ["default", "outline"];
+  const DISABLED: Array<boolean> = [false, true];
+  const ICONS = [null, <TbEye />];
 
   return (
-    <WidgetFarmProvider>
-      <div className={styles.List}>
+    <ButtonProvider className={clsx(base.Button, light.Button)}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "8px",
+        }}
+      >
         {COLORS.map((color) => {
-          return (
-            <section key={color} className={styles.Section}>
-              {VARIANTS.map((variant) => {
+          return VARIANTS.map((variant) => {
+            return DISABLED.map((disabled) => {
+              return ICONS.map((icon, i) => {
                 return (
-                  <Fragment key={`${color}-${variant}`}>
-                    <div className={styles.Showcase}>
-                      <div className={styles.Component}>
-                        <Button
-                          key={`${color}-${variant}`}
-                          color={color}
-                          variant={variant}
-                        >
-                          Button
-                        </Button>
-                      </div>
-                      <div className={styles.Properties}>
-                        <div>
-                          Color: <Badge>{color}</Badge>
-                        </div>
-                        <div>
-                          Variant: <Badge>{variant}</Badge>
-                        </div>
-                        <div>
-                          Disabled: <Badge>false</Badge>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={styles.Showcase}>
-                      <div className={styles.Component}>
-                        <Button
-                          key={`${color}-${variant}-disabled`}
-                          color={color}
-                          variant={variant}
-                          disabled
-                        >
-                          Button
-                        </Button>
-                      </div>
-                      <div className={styles.Properties}>
-                        <div>
-                          <span>Color:</span> <Badge>{color}</Badge>
-                        </div>
-                        <div>
-                          Variant: <Badge>{variant}</Badge>
-                        </div>
-                        <div>
-                          Disabled: <Badge>true</Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </Fragment>
+                  <div
+                    key={`${color}-${variant}-${disabled}-${i}`}
+                    className={styles.ButtonWrapper}
+                  >
+                    <Button color={color} variant={variant} disabled={disabled}>
+                      {icon}
+                      Button
+                    </Button>
+                  </div>
                 );
-              })}
-            </section>
-          );
+              });
+            });
+          });
         })}
       </div>
-    </WidgetFarmProvider>
+    </ButtonProvider>
   );
 }

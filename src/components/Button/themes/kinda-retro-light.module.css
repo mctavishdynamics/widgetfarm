@@ -1,4 +1,4 @@
-.Light {
+.Button {
   &,
   &[data-color="default"] {
     --background-color: var(--theme-color-light-gray-200);
@@ -57,5 +57,45 @@
     --outline--active--background-color: var(--theme-color-green--a-50);
 
     --focus--border-color: var(--theme-color-green-800);
+  }
+
+  /* COLOR: pink */
+  &[data-color="pink"] {
+    --background-color: var(--theme-color-pink);
+    --color: var(--theme-color-pink-50);
+    --border-color: var(--theme-color-pink-600);
+
+    --hover--background-color: var(--theme-color-pink-400);
+    --hover--color: var(--theme-color-pink-800);
+
+    --active--background-color: var(--theme-color-pink-600);
+    --active--color: var(--theme-color-pink-950);
+
+    --outline--color: var(--theme-color-pink-600);
+    --outline--border-color: var(--theme-color-pink-400);
+    --outline--hover--background-color: var(--theme-color-pink--a-25);
+    --outline--active--background-color: var(--theme-color-pink--a-50);
+
+    --focus--border-color: var(--theme-color-pink-800);
+  }
+
+  /* COLOR: pink */
+  &[data-color="purple"] {
+    --background-color: var(--theme-color-purple);
+    --color: var(--theme-color-purple-25);
+    --border-color: var(--theme-color-purple-600);
+
+    --hover--background-color: var(--theme-color-purple-400);
+    --hover--color: var(--theme-color-white);
+
+    --active--background-color: var(--theme-color-purple-600);
+    --active--color: var(--theme-color-purple-50);
+
+    --outline--color: var(--theme-color-purple-600);
+    --outline--border-color: var(--theme-color-purple-400);
+    --outline--hover--background-color: var(--theme-color-purple--a-25);
+    --outline--active--background-color: var(--theme-color-purple--a-50);
+
+    --focus--border-color: var(--theme-color-purple-800);
   }
 }

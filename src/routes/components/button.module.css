@@ -1,0 +1,5 @@
+.ButtonWrapper {
+  & > button {
+    width: 100%;
+  }
+}
