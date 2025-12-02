@@ -1,0 +1,10 @@
+.HStack {
+  display: flex;
+  flex: 1;
+
+  align-items: flex-start;
+}
+
+.HStack__Inline {
+  display: inline-flex;
+}

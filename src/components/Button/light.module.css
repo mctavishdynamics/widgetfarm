@@ -1,0 +1,61 @@
+.Light {
+  &,
+  &[data-color="default"] {
+    --background-color: var(--theme-color-light-gray-200);
+    --color: var(--theme-color-gray-600);
+    --border-color: var(--theme-color-light-gray-600);
+
+    --hover--background-color: var(--theme-color-light-gray-300);
+    --hover--color: var(--theme-color-gray);
+
+    --active--background-color: var(--theme-color-light-gray-600);
+    --active--color: var(--theme-color-gray-700);
+
+    --outline--color: var(--theme-color-gray-600);
+    --outline--border-color: var(--theme-color-gray-100);
+    --outline--hover--background-color: var(--theme-color-gray-25);
+    --outline--active--background-color: var(--theme-color-gray-100);
+
+    --focus--border-color: var(--theme-color-gray-800);
+  }
+
+  /* COLOR: red */
+  &[data-color="red"] {
+    --background-color: var(--theme-color-red);
+    --color: var(--theme-color-red-900);
+    --border-color: var(--theme-color-red-600);
+
+    --hover--background-color: var(--theme-color-red-400);
+    --hover--color: var(--theme-color-red-800);
+
+    --active--background-color: var(--theme-color-red-600);
+    --active--color: var(--theme-color-red-950);
+
+    --outline--color: var(--theme-color-red-600);
+    --outline--border-color: var(--theme-color-red-400);
+    --outline--hover--background-color: var(--theme-color-red-25);
+    --outline--active--background-color: var(--theme-color-red-200);
+
+    --focus--border-color: var(--theme-color-red-800);
+  }
+
+  /* COLOR: green */
+  &[data-color="green"] {
+    --background-color: var(--theme-color-green);
+    --color: var(--theme-color-green-900);
+    --border-color: var(--theme-color-green-600);
+
+    --hover--background-color: var(--theme-color-green-400);
+    --hover--color: var(--theme-color-green-800);
+
+    --active--background-color: var(--theme-color-green-600);
+    --active--color: var(--theme-color-green-950);
+
+    --outline--color: var(--theme-color-green-600);
+    --outline--border-color: var(--theme-color-green-400);
+    --outline--hover--background-color: var(--theme-color-green--a-25);
+    --outline--active--background-color: var(--theme-color-green--a-50);
+
+    --focus--border-color: var(--theme-color-green-800);
+  }
+}

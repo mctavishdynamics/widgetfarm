@@ -1,0 +1,54 @@
+:root {
+  --Textarea--background-color: #fff;
+  --Textarea--font-size: 16px;
+  --Textarea--line-height: calc(var(--Textarea--font-size) * 1.25);
+  --Textarea--padding: 16px;
+}
+
+.Textarea {
+  display: flex;
+
+  background-color: var(--Textarea--background-color);
+
+  border: 1px solid #ddd;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+
+  border-radius: 4px;
+  position: relative;
+
+  &:focus-within {
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 1px dotted #000;
+
+      pointer-events: none;
+    }
+  }
+}
+
+.Textarea_Textarea {
+  padding: 16px;
+  box-sizing: border-box;
+  flex: 1;
+
+  min-height: calc(
+    var(--Textarea--padding) + var(--Textarea--line-height) +
+      var(--Textarea--padding)
+  );
+
+  background: transparent;
+  border: 0;
+
+  font-family: inherit;
+  font-size: var(--Textarea--font-size);
+  line-height: var(--Textarea--line-height);
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: none;
+  }
+}

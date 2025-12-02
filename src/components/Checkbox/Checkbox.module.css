@@ -1,0 +1,64 @@
+.Checkbox {
+  &[data-part="root"] {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+  }
+
+  &[data-part="group"] {
+    display: flex;
+    gap: 24px;
+  }
+
+  &[data-part="control"] {
+    background: #fff;
+    border: 1px solid var(--theme-color-gray-100);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    box-shadow: 0 1px 2px var(--theme-color-black--a-10);
+    position: relative;
+
+    &[data-focus],
+    &[data-focus-within],
+    &[data-focus-visible] {
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border: 1px dotted var(--theme-color-black--a-25);
+      }
+    }
+
+    &[data-state="checked"] {
+      box-shadow: 0 1px 2px var(--theme-color-black--a-20);
+      color: var(--theme-color-primary);
+      border: 1px solid var(--theme-color-gray-400);
+    }
+
+    &[data-invalid] {
+      border-color: var(--theme-color-red);
+    }
+
+    &[data-disabled] {
+      background-color: #b7b7b7;
+    }
+  }
+
+  &[data-part="indicator"]:not([hidden]) {
+    width: 80%;
+    height: 80%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

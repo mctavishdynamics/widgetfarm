@@ -1,0 +1,124 @@
+/*//////////////////////////////////////////////////////////////////////////////
+DataTable
+//////////////////////////////////////////////////////////////////////////////*/
+
+.DataTable {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.DataTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+DataTable_HeaderRow
+//////////////////////////////////////////////////////////////////////////////*/
+
+.DataTable_HeaderRow {
+  background: #eee;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+DataTable_HeaderCell
+//////////////////////////////////////////////////////////////////////////////*/
+
+.DataTable_HeaderCell {
+  position: relative;
+
+  text-align: left;
+
+  border-right: 1px dotted #ddd;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  /* Bottom Shadow */
+  &::after {
+    content: " ";
+
+    position: absolute;
+    left: 0;
+    right: -1px;
+    bottom: -4px;
+    height: 4px;
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  }
+
+  .DataTable_HeaderCell_Body {
+    padding: 8px;
+
+    font-size: 12px;
+  }
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+DataTable_Body
+//////////////////////////////////////////////////////////////////////////////*/
+
+.DataTable_Body {
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+DataTable_BodyRow
+//////////////////////////////////////////////////////////////////////////////*/
+
+.DataTable_BodyRow {
+  border-bottom: 1px dotted #eee;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+DataTable_BodyCell
+//////////////////////////////////////////////////////////////////////////////*/
+
+.DataTable_BodyCell {
+  background: #fff;
+  border-right: 1px dotted #eee;
+
+  .DataTable_BodyCell_Body {
+    padding: 8px;
+  }
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+DataTable_Expander
+//////////////////////////////////////////////////////////////////////////////*/
+
+.DataTable_Expander {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 256px;
+
+  &:hover {
+    background: #eee;
+  }
+
+  &:active {
+    background: #ddd;
+  }
+
+  & > button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 8px;
+
+    background: transparent;
+    border: 0;
+
+    border-radius: 256px;
+  }
+}

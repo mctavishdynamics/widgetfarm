@@ -1,0 +1,7 @@
+.BadgeGroup {
+  &[data-part="content"] {
+    display: inline-flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}

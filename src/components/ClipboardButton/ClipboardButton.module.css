@@ -1,0 +1,15 @@
+.ClipboardButton {
+  [data-scope="clipboard"][data-part="trigger"] {
+    padding: 4px;
+  }
+
+  [data-scope="clipboard"][data-part="indicator"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      height: 16px;
+    }
+  }
+}
