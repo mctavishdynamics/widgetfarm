@@ -22,6 +22,12 @@ export function Button(props: ButtonProps) {
     size = "md",
     type = "button",
     variant = "default",
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isInvalid,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isDirty,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isTouched,
     ...rest
   } = props;
 

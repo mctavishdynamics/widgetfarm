@@ -1,6 +1,10 @@
 .Button {
   &[data-part="button"],
-  &[data-part="trigger"] {
+  /* TODO:
+      Not really sure what I want to do about these; these come from other
+      components that use a Button asChild. */
+  &[data-part="trigger"],
+  &[data-part="clear-trigger"] {
     font-family: inherit;
 
     display: inline-flex;
