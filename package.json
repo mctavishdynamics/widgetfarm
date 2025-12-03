@@ -9,14 +9,8 @@
       "import": "./dist/button.es.js",
       "require": "./dist/button.cjs.js"
     },
-    "./checkbox/themes/kinda-retro-base.module.css": {
-      "import": "./dist/checkbox/themes/kinda-retro-base.module.css"
-    },
-    "./button/themes/kinda-retro-light.module.css": {
-      "import": "./dist/button/themes/kinda-retro-light.module.css"
-    },
-    "./button/themes/kinda-retro-base.module.css": {
-      "import": "./dist/button/themes/kinda-retro-base.module.css"
+    "./themes/*": {
+      "import": "./dist/themes/*"
     }
   },
   "sideEffects": false,

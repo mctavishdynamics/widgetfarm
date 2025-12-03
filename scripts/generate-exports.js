@@ -13,16 +13,19 @@ themeModules.forEach((file) => {
   const relativeDestination = relative
     .split(path.sep)
     .map((fragment, i) => (i === 0 ? fragment.toLowerCase() : fragment))
+    .filter((fragment) => fragment !== "themes")
     .join("/");
 
-  pkg.exports = pkg.exports ?? {};
+  // pkg.exports = pkg.exports ?? {};
+  //
+  // pkg.exports[[".", relativeDestination].join("/")] = {
+  //   import: [".", "dist", relativeDestination].join("/"),
+  // };
 
-  pkg.exports[[".", relativeDestination].join("/")] = {
-    import: [".", "dist", relativeDestination].join("/"),
-  };
-
-  mkdirp.sync(path.dirname(path.resolve("dist", relativeDestination)));
-  fs.copyFileSync(file, path.resolve("dist", relativeDestination));
+  mkdirp.sync(
+    path.dirname(path.resolve("dist", "themes", relativeDestination)),
+  );
+  fs.copyFileSync(file, path.resolve("dist", "themes", relativeDestination));
 });
 
-fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+// fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
