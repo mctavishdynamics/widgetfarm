@@ -18,11 +18,8 @@
     "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build": "bun run build:lib",
-    "build:lib": "cross-env BUILD_LIB=1 vite build && bun run copy:themes && bun scripts/generate-exports.js",
-    "build:demo": "tsc -b && vite build",
-    "copy:themes": "cpy \"src/components/**/themes/*.module.css\" dist/themes --parents",
-    "prepare": "bun run build:lib"
+    "build": "vite build && bun scripts/generate-exports.js",
+    "prepare": "bun run build"
   },
   "peerDependencies": {
     "react": "^19.2.0",
