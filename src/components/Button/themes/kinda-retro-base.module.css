@@ -1,5 +1,6 @@
 .Button {
-  &[data-part="button"] {
+  &[data-part="button"],
+  &[data-part="trigger"] {
     font-family: inherit;
 
     display: inline-flex;
