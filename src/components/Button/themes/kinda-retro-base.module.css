@@ -4,6 +4,8 @@
       Not really sure what I want to do about these; these come from other
       components that use a Button asChild. */
   &[data-part="trigger"],
+  &[data-part="increment-trigger"],
+  &[data-part="decrement-trigger"],
   &[data-part="clear-trigger"] {
     font-family: inherit;
 
