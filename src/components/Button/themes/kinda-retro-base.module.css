@@ -106,3 +106,13 @@
     }
   }
 }
+
+.Button {
+  &[data-size="lg"] {
+    font-size: 18px;
+  }
+
+  &[data-size="xl"] {
+    font-size: 20px;
+  }
+}
