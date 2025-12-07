@@ -1,6 +1,6 @@
 {
   "name": "widgetfarm",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
   "main": "./dist/widgetfarm.umd.js",
   "module": "./dist/widgetfarm.es.js",
