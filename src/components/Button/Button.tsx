@@ -13,6 +13,8 @@ export interface ButtonProps
   color?: ButtonColor;
 }
 
+const DATA_SCOPE = "button";
+
 export function Button(props: ButtonProps) {
   const {
     className = "",
@@ -36,16 +38,21 @@ export function Button(props: ButtonProps) {
   const context = useButtonContext();
 
   return (
-    <button
-      data-scope={"button"}
-      data-part={"button"}
+    <div
+      data-scope={DATA_SCOPE}
+      data-part={"root"}
+      data-color={color}
       data-size={size}
       data-variant={variant}
-      data-color={color}
       className={clsx(context.className, className)}
-      type={type}
-      {...(disabled ? { disabled: true, "aria-disabled": true } : {})}
-      {...rest}
-    />
+    >
+      <button
+        data-scope={DATA_SCOPE}
+        data-part={"button"}
+        type={type}
+        {...(disabled ? { disabled: true, "aria-disabled": true } : {})}
+        {...rest}
+      />
+    </div>
   );
 }
