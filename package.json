@@ -18,6 +18,7 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "prepack": "npm run build",
     "dev": "vite",
     "clean": "node scripts/clean.js",
     "build": "npm run clean && tsc --project tsconfig.build.json && vite build && npm run copy-styles",
