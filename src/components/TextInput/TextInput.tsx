@@ -1,7 +1,9 @@
 import { clsx } from "clsx";
 import { type InputHTMLAttributes, type JSX, type Ref, useId } from "react";
-import type { FormStateProps } from "../../../dist/FormStateProps";
+import type { FormStateProps } from "../../FormStateProps";
 import { useTextInputContext } from "./useTextInputContext.ts";
+
+
 
 export type TextInputLabelRenderer = (args: {
   isDirty: boolean;
