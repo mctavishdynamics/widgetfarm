@@ -1,58 +1,55 @@
 {
   "name": "widgetfarm",
-  "private": false,
   "version": "0.0.8",
   "type": "module",
+  "main": "./dist/widgetfarm.umd.js",
+  "module": "./dist/widgetfarm.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./button": {
-      "types": "./dist/button.es.d.ts",
-      "import": "./dist/button.es.js",
-      "require": "./dist/button.cjs.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/widgetfarm.es.js",
+      "require": "./dist/widgetfarm.umd.js"
     },
-    "./themes/*": {
-      "import": "./dist/themes/*"
-    }
+    "./styles/*": "./dist/styles/*"
   },
-  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "dev": "vite",
+    "clean": "node scripts/clean.js",
+    "build": "npm run clean && tsc --project tsconfig.build.json && vite build && npm run copy-styles",
+    "copy-styles": "node scripts/copy-styles.js",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build": "vite build && bun scripts/generate-exports.js",
-    "prepare": "bun run build"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
-  "dependencies": {
-    "@ark-ui/react": "^5.29.1",
-    "clsx": "^2.1.1",
-    "react-icons": "^5.5.0"
-  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@storybook/react-vite": "^10.1.4",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
-    "ajv": "^8.17.1",
-    "cpy-cli": "^6.0.0",
-    "cross-env": "^10.1.0",
+    "change-case": "^5.4.4",
+    "cli-table3": "^0.6.5",
+    "clsx": "^2.1.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
-    "glob": "^13.0.0",
+    "eslint-plugin-storybook": "^10.1.4",
     "globals": "^16.5.0",
-    "mkdirp": "^3.0.1",
-    "prettier": "^3.7.3",
     "prettier-plugin-organize-imports": "^4.3.0",
+    "storybook": "^10.1.4",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4",
-    "vite-plugin-dts": "^4.5.4"
+    "vite": "^7.2.4"
   }
 }

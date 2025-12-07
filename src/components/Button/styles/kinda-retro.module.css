@@ -1,4 +1,143 @@
 .Button {
+  &[data-part="button"],
+  /* TODO:
+      Not really sure what I want to do about these; these come from other
+      components that use a Button asChild. */
+  &[data-part="trigger"],
+  &[data-part="increment-trigger"],
+  &[data-part="decrement-trigger"],
+  &[data-part="clear-trigger"] {
+    font-family: inherit;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    padding: 4px 8px;
+    border-radius: 2px;
+
+    background-color: var(--background-color);
+    color: var(--color);
+    border-style: solid;
+    border-color: var(--border-color);
+
+    font-family: sans-serif;
+  }
+
+  /* Icon */
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Hover and Active States */
+.Button {
+  &:not([disabled]) {
+    &:hover {
+      background-color: var(--hover--background-color);
+      color: var(--hover--color);
+    }
+
+    &:active {
+      background-color: var(--active--background-color);
+      color: var(--active--color);
+    }
+  }
+}
+
+/* Focus State */
+.Button {
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
+    position: relative;
+    outline: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+
+      border-width: 1px;
+      border-style: dotted;
+      border-color: var(--focus--border-color);
+    }
+  }
+}
+
+/* Disabled */
+.Button {
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+/* VARIANT: default */
+.Button {
+  &[data-variant="default"] {
+    border-width: 1px 2px 2px 1px;
+
+    &:not([disabled]) {
+      &:active {
+        border-bottom-width: 1px;
+        margin-top: 1px;
+      }
+    }
+  }
+}
+
+/* VARIANT: outline */
+.Button {
+  &[data-variant="outline"] {
+    color: var(--outline--color);
+    background-color: transparent;
+    border-width: 1px 2px 2px 1px;
+    border-color: var(--outline--border-color);
+
+    &:not([disabled]) {
+      &:hover {
+        background-color: var(--outline--hover--background-color);
+      }
+
+      &:active {
+        border-bottom-width: 1px;
+        margin-top: 1px;
+        background-color: var(--outline--active--background-color);
+      }
+    }
+  }
+}
+
+.Button {
+  &[data-size="xs"] {
+    font-size: 10px;
+  }
+
+  &[data-size="sm"] {
+    font-size: 12px;
+  }
+
+  &[data-size="md"] {
+    font-size: 16px;
+  }
+
+  &[data-size="lg"] {
+    font-size: 18px;
+  }
+
+  &[data-size="xl"] {
+    font-size: 20px;
+  }
+
+  &[data-size="xxl"] {
+    font-size: 24px;
+  }
+}
+
+.Button {
   &,
   &[data-color="default"] {
     --background-color: var(--theme-color-light-gray-200);
