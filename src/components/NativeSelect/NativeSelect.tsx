@@ -1,6 +1,6 @@
 import { clsx } from "clsx";
 import { forwardRef, type PropsWithChildren, type SelectHTMLAttributes } from "react";
-import type { LabelType } from "../../LabelType";
+import type { LabelType } from "../../types/LabelType";
 import { useNativeSelectContext } from "./useNativeSelectContext";
 
 export interface NativeSelectProps

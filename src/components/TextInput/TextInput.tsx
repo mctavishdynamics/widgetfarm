@@ -2,8 +2,9 @@ import { clsx } from "clsx";
 import { type InputHTMLAttributes, type Ref, useId } from "react";
 import type { ErrorType } from "../../ErrorType";
 import type { FormStateProps } from "../../FormStateProps";
-import type { LabelRenderer } from "../../LabelRenderer";
-import type { LabelType } from "../../LabelType";
+import type { LabelRendererType } from "../../types/LabelRendererType";
+import type { LabelType } from "../../types/LabelType";
+import { renderLabel } from "../../utils/renderLabel";
 import { useTextInputContext } from "./useTextInputContext";
 
 export interface TextInputProps
@@ -11,7 +12,7 @@ export interface TextInputProps
     Omit<InputHTMLAttributes<HTMLInputElement>, "children">,
     FormStateProps {
   label?: LabelType;
-  labelRenderer?: LabelRenderer;
+  labelRenderer?: LabelRendererType;
   error?: ErrorType;
   ref?: Ref<HTMLInputElement>;
 }
@@ -29,10 +30,6 @@ export function TextInput(props: TextInputProps) {
 
     error,
 
-    isDirty = false,
-    isInvalid = false,
-    isTouched = false,
-
     ...rest
   } = props;
 
@@ -42,14 +39,6 @@ export function TextInput(props: TextInputProps) {
   const _id = id || usedId;
   const _name = name || _id;
 
-  let _label = label;
-
-  if (typeof labelRenderer === "function") {
-    if (labelRenderer({ isDirty, isInvalid, isTouched })) {
-      _label = labelRenderer({ isDirty, isInvalid, isTouched });
-    }
-  }
-
   return (
     <div
       className={clsx(context.className, className)}
@@ -57,11 +46,13 @@ export function TextInput(props: TextInputProps) {
       data-part={"root"}
       {...(error ? { "data-error": !!error } : {})}
     >
-      {_label ? (
-        <label data-scope={DATA_SCOPE} data-part={"label"} htmlFor={_id}>
-          {_label}
-        </label>
-      ) : null}
+      {renderLabel({ label, labelRenderer }, (label) => {
+        return (
+          <label data-scope={DATA_SCOPE} data-part={"label"} htmlFor={_id}>
+            {label}
+          </label>
+        );
+      })}
       <div data-scope={DATA_SCOPE} data-part={"control"}>
         <input
           autoComplete={"off"}

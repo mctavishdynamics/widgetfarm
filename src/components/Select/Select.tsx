@@ -8,7 +8,8 @@ import {
 import { clsx } from "clsx";
 import type { JSX } from "react";
 import { TbCheck, TbChevronDown, TbX } from "react-icons/tb";
-import type { LabelRenderer } from "../../LabelRenderer";
+import type { LabelRendererType } from "../../types/LabelRendererType";
+import { renderLabel } from "../../utils/renderLabel";
 import { Button } from "../Button/Button";
 import { useSelectContext } from "./useSelectContext";
 
@@ -23,7 +24,7 @@ export interface SelectProps<T extends SelectOption> extends Omit<
   "collection" | "onSelect"
 > {
   label?: string | JSX.Element;
-  labelRenderer?: LabelRenderer;
+  labelRenderer?: LabelRendererType;
   isDirty?: boolean;
   isInvalid?: boolean;
   isTouched?: boolean;
@@ -38,10 +39,8 @@ export function Select<T extends SelectOption>(
     className,
     label,
     labelRenderer,
-    isDirty = false,
-    isInvalid = false,
-    isTouched = false,
     items = [],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onSelect = () => {},
     ...rest
   } = props;
@@ -54,16 +53,6 @@ export function Select<T extends SelectOption>(
     itemToValue: (item) => item.value,
   });
 
-  let _label = label;
-
-  if (typeof labelRenderer === "function") {
-    if (labelRenderer({ isDirty, isInvalid, isTouched })) {
-      _label = labelRenderer({ isDirty, isInvalid, isTouched });
-    }
-  }
-
-  console.log(onSelect);
-
   return (
     <ArkSelect.Root
       collection={collection}
@@ -71,7 +60,9 @@ export function Select<T extends SelectOption>(
       positioning={{ offset: { mainAxis: 4 } }}
       {...rest}
     >
-      <ArkSelect.Label>{_label}</ArkSelect.Label>
+      {renderLabel({ label, labelRenderer }, (label) => {
+        return <ArkSelect.Label>{label}</ArkSelect.Label>;
+      })}
       <ArkSelect.Control>
         <ArkSelect.Trigger>
           <ArkSelect.ValueText placeholder={"Select an option"} />

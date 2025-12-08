@@ -60,3 +60,12 @@ export {
   type DatePickerProviderProps,
 } from "./components/DatePicker/DatePickerProvider";
 export { useDatePickerContext } from "./components/DatePicker/useDatePickerContext";
+
+// Checkbox
+export { Checkbox, type CheckboxProps } from "./components/Checkbox/Checkbox";
+export { CheckboxContext } from "./components/Checkbox/CheckboxContext";
+export {
+  CheckboxProvider,
+  type CheckboxProviderProps,
+} from "./components/Checkbox/CheckboxProvider";
+export { useCheckboxContext } from "./components/Checkbox/useCheckboxContext";
