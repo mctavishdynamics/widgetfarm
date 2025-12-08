@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from "react";
-import { SelectContext, type ISelectContext } from "./SelectContext.ts";
+import { SelectContext, type ISelectContext } from "./SelectContext";
 
 export interface SelectProviderProps
   extends ISelectContext, PropsWithChildren {}

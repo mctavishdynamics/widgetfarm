@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ButtonContext } from "./ButtonContext.ts";
+import { ButtonContext } from "./ButtonContext";
 
 export function useButtonContext() {
   const context = useContext(ButtonContext);

@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import type { ButtonHTMLAttributes } from "react";
-import type { FormStateProps } from "../../FormStateProps.ts";
-import { useButtonContext } from "./useButtonContext.ts";
+import type { FormStateProps } from "../../FormStateProps";
+import { useButtonContext } from "./useButtonContext";
 
 export type ButtonColor = "default" | "red" | "green" | "pink" | "purple";
 export type ButtonVariant = "default" | "outline";

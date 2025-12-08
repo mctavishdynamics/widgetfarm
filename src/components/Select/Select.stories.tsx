@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import { ButtonProvider } from "../Button/ButtonProvider.tsx";
+import { ButtonProvider } from "../Button/ButtonProvider";
 import buttonStyles from "../Button/styles/kinda-retro.module.css";
 import { Select } from "./Select";
 import { SelectProvider } from "./SelectProvider";

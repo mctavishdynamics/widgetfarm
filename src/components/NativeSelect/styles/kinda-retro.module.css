@@ -1,0 +1,20 @@
+.NativeSelect {
+  background-color: var(--theme-color-light-gray-200);
+  border-style: solid;
+  border-color: var(--theme-color-light-gray-600);
+  border-width: 1px 2px 2px 1px;
+
+  font-size: 14px;
+  height: 32px;
+
+  margin: 0;
+  padding: 0 8px;
+
+  border-radius: 2px;
+
+  &:focus,
+  &:focus-visible {
+    outline: 1px dotted var(--theme-color-gray-800);
+    outline-offset: -4px;
+  }
+}

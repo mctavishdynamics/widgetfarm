@@ -7,6 +7,7 @@ import { clsx } from "clsx";
 import { useId, type JSX, type Ref } from "react";
 import { TbCalendar, TbX } from "react-icons/tb";
 import { Button } from "../Button/Button";
+import { useNativeSelectContext } from "../NativeSelect/useNativeSelectContext";
 import { TextInput } from "../TextInput/TextInput";
 import { useDatePickerContext } from "./useDatePickerContext";
 
@@ -58,6 +59,7 @@ export function DatePicker(props: DatePickerProps) {
   } = props;
 
   const context = useDatePickerContext();
+  const nativeSelectContext = useNativeSelectContext();
   const usedId = useId();
 
   const _id = id || usedId;
@@ -107,8 +109,12 @@ export function DatePicker(props: DatePickerProps) {
         >
           <BaseDatePicker.Content>
             <div data-scope={DATA_SCOPE} data-part="header">
-              <BaseDatePicker.YearSelect />
-              <BaseDatePicker.MonthSelect />
+              <BaseDatePicker.YearSelect
+                className={nativeSelectContext.className}
+              />
+              <BaseDatePicker.MonthSelect
+                className={nativeSelectContext.className}
+              />
             </div>
 
             <BaseDatePicker.View view="day">

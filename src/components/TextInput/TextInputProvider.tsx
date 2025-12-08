@@ -2,7 +2,7 @@ import { type PropsWithChildren } from "react";
 import {
   TextInputContext,
   type ITextInputContext,
-} from "./TextInputContext.ts";
+} from "./TextInputContext";
 
 export interface TextInputProviderProps
   extends ITextInputContext, PropsWithChildren {}

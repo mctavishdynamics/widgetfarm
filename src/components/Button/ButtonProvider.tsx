@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from "react";
-import { ButtonContext, type IButtonContext } from "./ButtonContext.ts";
+import { ButtonContext, type IButtonContext } from "./ButtonContext";
 
 export interface ButtonProviderProps
   extends IButtonContext, PropsWithChildren {}

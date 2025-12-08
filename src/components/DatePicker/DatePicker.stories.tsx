@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ButtonProvider } from "../Button/ButtonProvider";
 import buttonStyles from "../Button/styles/kinda-retro.module.css";
+import { NativeSelectProvider } from "../NativeSelect/NativeSelectProvider";
+import nativeSelectStyles from "../NativeSelect/styles/kinda-retro.module.css";
 import textInputStyles from "../TextInput/styles/kinda-retro.module.css";
 import { TextInputProvider } from "../TextInput/TextInputProvider";
 import { DatePicker } from "./DatePicker";
@@ -13,13 +15,15 @@ const meta = {
   component: DatePicker,
   decorators: [
     (Story) => (
-      <ButtonProvider className={buttonStyles.Button}>
-        <TextInputProvider className={textInputStyles.TextInput}>
-          <DatePickerProvider className={styles.DatePicker}>
-            <Story />
-          </DatePickerProvider>
-        </TextInputProvider>
-      </ButtonProvider>
+      <NativeSelectProvider className={nativeSelectStyles.NativeSelect}>
+        <ButtonProvider className={buttonStyles.Button}>
+          <TextInputProvider className={textInputStyles.TextInput}>
+            <DatePickerProvider className={styles.DatePicker}>
+              <Story />
+            </DatePickerProvider>
+          </TextInputProvider>
+        </ButtonProvider>
+      </NativeSelectProvider>
     ),
   ],
   parameters: {

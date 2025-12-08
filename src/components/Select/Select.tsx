@@ -8,9 +8,9 @@ import {
 import { clsx } from "clsx";
 import type { JSX } from "react";
 import { TbCheck, TbChevronDown, TbX } from "react-icons/tb";
-import type { LabelRenderer } from "../../LabelRenderer.ts";
-import { Button } from "../Button/Button.tsx";
-import { useSelectContext } from "./useSelectContext.ts";
+import type { LabelRenderer } from "../../LabelRenderer";
+import { Button } from "../Button/Button";
+import { useSelectContext } from "./useSelectContext";
 
 export interface SelectOption extends CollectionItem {
   label: string;
