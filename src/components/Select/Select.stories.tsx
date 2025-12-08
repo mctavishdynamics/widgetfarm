@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-// import { expect, userEvent } from "storybook/test";
-
 import { fn } from "storybook/test";
 import { ButtonProvider } from "../Button/ButtonProvider.tsx";
 import buttonStyles from "../Button/styles/kinda-retro.module.css";
@@ -25,10 +23,12 @@ const meta = {
   },
   args: {
     items: [
-      { label: "Option A", value: "a" },
-      { label: "Option B", value: "b" },
-      { label: "Option C", value: "c" },
-      { label: "Option D", value: "d" },
+      { label: "AAA", value: "a" },
+      { label: "AAB", value: "b" },
+      { label: "AAC", value: "c" },
+      { label: "AAD", value: "d" },
+      { label: "AAE", value: "e" },
+      { label: "AAF", value: "f" },
     ],
   },
 } satisfies Meta<typeof Select>;

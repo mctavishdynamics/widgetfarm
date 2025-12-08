@@ -50,6 +50,8 @@ export function Select<T extends SelectOption>(
 
   const collection = createListCollection<T>({
     items,
+    itemToString: (item) => item.label,
+    itemToValue: (item) => item.value,
   });
 
   let _label = label;
