@@ -46,7 +46,12 @@
       }
 
       [data-part="value-text"] {
-        padding: 8px 16px 8px 8px;
+        height: 32px;
+        box-sizing: border-box;
+
+        font-size: 14px;
+
+        padding: 7px 16px 8px 8px;
         background: var(--theme-color-light-gray-200);
 
         border-style: solid;
@@ -66,6 +71,8 @@
 
       [data-part="indicator"] {
         position: relative;
+        width: 32px;
+        height: 32px;
 
         background: var(--theme-color-light-gray-200);
         border-style: solid;
@@ -87,10 +94,14 @@
         display: inline-flex;
         align-items: center;
         background: var(--theme-color-light-gray-200);
-        height: 100%;
         box-sizing: border-box;
 
         border-left: 1px solid var(--theme-color-light-gray);
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
       }
     }
   }
@@ -123,6 +134,7 @@
       justify-content: space-between;
 
       border-radius: 2px;
+      font-size: 14px;
 
       padding: 4px 8px;
 

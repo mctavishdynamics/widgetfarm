@@ -23,12 +23,12 @@ const meta = {
   },
   args: {
     items: [
-      { label: "AAA", value: "a" },
-      { label: "AAB", value: "b" },
-      { label: "AAC", value: "c" },
-      { label: "AAD", value: "d" },
-      { label: "AAE", value: "e" },
-      { label: "AAF", value: "f" },
+      { label: "First Option", value: "first" },
+      { label: "Second Option", value: "second" },
+      { label: "Third Option", value: "third" },
+      { label: "Fourth Option", value: "fourth" },
+      { label: "Fifth Option", value: "fifth" },
+      { label: "Sixth Option", value: "sixth" },
     ],
   },
 } satisfies Meta<typeof Select>;
