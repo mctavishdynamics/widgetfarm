@@ -24,7 +24,7 @@
       background: var(--theme-color-gray-100);
 
       border: 1px solid var(--theme-color-gray-25);
-      border-radius: 8px;
+      border-radius: 4px;
       box-shadow: 0 1px 16px var(--theme-color-black--a-20);
 
       min-width: 320px;
@@ -44,7 +44,7 @@
     [data-part="view"] {
       background: var(--theme-color-white);
       padding: 4px;
-      border-radius: 8px;
+      border-radius: 4px;
       box-shadow: 0 0 8px var(--theme-color-black--a-10);
       border-top: 1px solid var(--theme-color-gray-300);
     }
