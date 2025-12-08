@@ -7,7 +7,6 @@ import { TextInputProvider } from "../TextInput/TextInputProvider";
 import { DatePicker } from "./DatePicker";
 import { DatePickerProvider } from "./DatePickerProvider";
 import styles from "./styles/kinda-retro.module.css";
-import { parseDate } from "@ark-ui/react";
 
 const meta = {
   title: "DatePicker",
@@ -37,8 +36,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  name: "Default",
+export const Default: Story = {
   // play: async ({ canvas, args }) => {
   //   const button = canvas.getByRole("button");
   //   await userEvent.click(button);

@@ -24,15 +24,14 @@ const meta = {
     isDirty: false,
     isTouched: false,
     onClick: fn(),
-    name: "Hello"
+    name: "Hello",
   },
 } satisfies Meta<typeof TextInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  name: "Default",
+export const Default: Story = {
   play: async ({ canvas, args }) => {
     const button = canvas.getByRole("button");
     await userEvent.click(button);

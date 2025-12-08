@@ -1,14 +1,8 @@
 import { clsx } from "clsx";
 import { type InputHTMLAttributes, type JSX, type Ref, useId } from "react";
 import type { FormStateProps } from "../../FormStateProps";
+import type { LabelRenderer } from "../../LabelRenderer.ts";
 import { useTextInputContext } from "./useTextInputContext.ts";
-
-export type TextInputLabelRenderer = (args: {
-  label?: string | JSX.Element;
-  isDirty: boolean;
-  isInvalid: boolean;
-  isTouched: boolean;
-}) => string | JSX.Element;
 
 export type TextInputError = boolean | string | JSX.Element;
 
@@ -17,7 +11,7 @@ export interface TextInputProps
     Omit<InputHTMLAttributes<HTMLInputElement>, "children">,
     FormStateProps {
   label?: string | JSX.Element;
-  labelRenderer?: TextInputLabelRenderer;
+  labelRenderer?: LabelRenderer;
   error?: TextInputError;
   ref?: Ref<HTMLInputElement>;
 }
