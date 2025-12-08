@@ -3,15 +3,14 @@ import { type InputHTMLAttributes, type JSX, type Ref, useId } from "react";
 import type { FormStateProps } from "../../FormStateProps";
 import { useTextInputContext } from "./useTextInputContext.ts";
 
-
-
 export type TextInputLabelRenderer = (args: {
+  label?: string | JSX.Element;
   isDirty: boolean;
   isInvalid: boolean;
   isTouched: boolean;
 }) => string | JSX.Element;
 
-export type TextInputError = string | JSX.Element;
+export type TextInputError = boolean | string | JSX.Element;
 
 export interface TextInputProps
   extends
@@ -62,7 +61,7 @@ export function TextInput(props: TextInputProps) {
       className={clsx(context.className, className)}
       data-scope={DATA_SCOPE}
       data-part={"root"}
-      data-error={!!error}
+      {...(error ? { "data-error": !!error } : {})}
     >
       {_label ? (
         <label data-scope={DATA_SCOPE} data-part={"label"} htmlFor={_id}>
@@ -80,7 +79,7 @@ export function TextInput(props: TextInputProps) {
           data-part={"input"}
         />
       </div>
-      {error ? (
+      {error && error !== true ? (
         <div data-scope={DATA_SCOPE} data-part={"error"}>
           {error}
         </div>

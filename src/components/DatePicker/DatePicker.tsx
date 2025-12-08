@@ -1,19 +1,33 @@
 import {
   DatePicker as BaseDatePicker,
-  type DatePickerRootProps,
   Portal,
+  type DatePickerRootProps,
 } from "@ark-ui/react";
 import { clsx } from "clsx";
-import type { Ref } from "react";
+import { useId, type JSX, type Ref } from "react";
 import { TbCalendar, TbX } from "react-icons/tb";
-import { Button } from "widgetfarm";
-import { TextInput } from "../TextInput/TextInput.tsx";
-import styles from "./DatePicker.module.css";
+import { Button } from "../Button/Button";
+import { TextInput } from "../TextInput/TextInput";
+import { useDatePickerContext } from "./useDatePickerContext";
+
+export type DatePickerLabelRenderer = (args: {
+  label?: string | JSX.Element;
+  isDirty: boolean;
+  isInvalid: boolean;
+  isTouched: boolean;
+}) => string | JSX.Element;
+
+export type DatePickerError = string | JSX.Element;
 
 export interface DatePickerProps extends DatePickerRootProps {
-  label?: string;
+  id?: string;
+  name?: string;
+
+  label?: string | JSX.Element;
+  labelRenderer?: DatePickerLabelRenderer;
+
   iso8601?: boolean;
-  error?: string;
+  error?: DatePickerError;
 
   ref?: Ref<HTMLInputElement>;
 
@@ -22,8 +36,32 @@ export interface DatePickerProps extends DatePickerRootProps {
   isTouched?: boolean;
 }
 
+const DATA_SCOPE = "date-picker";
+
 export function DatePicker(props: DatePickerProps) {
-  const { label = "", iso8601 = false, error, ...rest } = props;
+  const {
+    id,
+    name,
+    className,
+    label = "",
+    iso8601 = false,
+    error,
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isDirty,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isInvalid,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    isTouched,
+
+    ...rest
+  } = props;
+
+  const context = useDatePickerContext();
+  const usedId = useId();
+
+  const _id = id || usedId;
+  const _name = name || _id;
 
   const iso6801Props: Pick<DatePickerProps, "placeholder" | "format"> = {
     placeholder: "yyyy-mm-dd",
@@ -39,13 +77,13 @@ export function DatePicker(props: DatePickerProps) {
   return (
     <BaseDatePicker.Root
       {...rest}
-      className={clsx(styles.DatePicker, { [styles.Error]: error })}
+      className={clsx(context.className, className)}
       {...(iso8601 ? iso6801Props : {})}
     >
-      <BaseDatePicker.Label>{label}</BaseDatePicker.Label>
+      <BaseDatePicker.Label htmlFor={_id}>{label}</BaseDatePicker.Label>
       <BaseDatePicker.Control>
         <BaseDatePicker.Input asChild>
-          <TextInput />
+          <TextInput id={_id} name={_name} error={!!error} />
         </BaseDatePicker.Input>
         <BaseDatePicker.Trigger asChild>
           <Button>
@@ -64,9 +102,11 @@ export function DatePicker(props: DatePickerProps) {
         </div>
       ) : null}
       <Portal>
-        <BaseDatePicker.Positioner>
+        <BaseDatePicker.Positioner
+          className={clsx(context.className, className)}
+        >
           <BaseDatePicker.Content>
-            <div className={styles.Header}>
+            <div data-scope={DATA_SCOPE} data-part="header">
               <BaseDatePicker.YearSelect />
               <BaseDatePicker.MonthSelect />
             </div>
@@ -116,6 +156,7 @@ export function DatePicker(props: DatePickerProps) {
                 )}
               </BaseDatePicker.Context>
             </BaseDatePicker.View>
+
             <BaseDatePicker.View view="month">
               <BaseDatePicker.Context>
                 {(datePicker) => (
@@ -157,6 +198,7 @@ export function DatePicker(props: DatePickerProps) {
                 )}
               </BaseDatePicker.Context>
             </BaseDatePicker.View>
+
             <BaseDatePicker.View view="year">
               <BaseDatePicker.Context>
                 {(datePicker) => (

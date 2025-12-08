@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import { type ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes } from "react";
 import type { FormStateProps } from "../../FormStateProps.ts";
 import { useButtonContext } from "./useButtonContext.ts";
 
@@ -37,6 +37,20 @@ export function Button(props: ButtonProps) {
 
   const context = useButtonContext();
 
+  const dataProps = Object.keys(rest)
+    .filter((key) => key.startsWith("data-"))
+    .reduce(
+      (acc, key) => ({ ...acc, [key]: rest[key as keyof typeof rest] }),
+      {},
+    );
+
+  const notDataProps = Object.keys(rest)
+    .filter((key) => !key.startsWith("data-"))
+    .reduce(
+      (acc, key) => ({ ...acc, [key]: rest[key as keyof typeof rest] }),
+      {},
+    );
+
   return (
     <div
       data-scope={DATA_SCOPE}
@@ -45,13 +59,16 @@ export function Button(props: ButtonProps) {
       data-size={size}
       data-variant={variant}
       className={clsx(context.className, className)}
+      hidden={rest.hidden}
+      {...dataProps}
     >
       <button
         data-scope={DATA_SCOPE}
         data-part={"button"}
+        data-button-part={"button"}
         type={type}
         {...(disabled ? { disabled: true, "aria-disabled": true } : {})}
-        {...rest}
+        {...notDataProps}
       />
     </div>
   );

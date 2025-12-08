@@ -1,12 +1,5 @@
 .Button {
-  [data-part="button"],
-  /* TODO:
-      Not really sure what I want to do about these; these come from other
-      components that use a Button asChild. */
-  [data-part="trigger"],
-  [data-part="increment-trigger"],
-  [data-part="decrement-trigger"],
-  [data-part="clear-trigger"] {
+  [data-part="button"] {
     font-family: inherit;
     font-size: inherit;
 
@@ -15,6 +8,9 @@
     align-items: center;
     gap: 8px;
 
+    width: 100%;
+    height: 100%;
+
     padding: 4px 8px;
     border-radius: 2px;
 
@@ -22,6 +18,10 @@
     color: var(--color);
     border-style: solid;
     border-color: var(--border-color);
+
+    &[hidden] {
+      display: none;
+    }
   }
 
   /* Icon */
