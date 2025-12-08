@@ -18,7 +18,7 @@ export interface SelectOption extends CollectionItem {
   [key: string]: unknown;
 }
 
-interface SelectProps<T extends SelectOption> extends Omit<
+export interface SelectProps<T extends SelectOption> extends Omit<
   SelectRootProps<T>,
   "collection" | "onSelect"
 > {
