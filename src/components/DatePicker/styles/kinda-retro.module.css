@@ -17,6 +17,8 @@
 
 .DatePicker {
   &[data-part="positioner"] {
+    z-index: 10000 !important;
+
     [data-part="content"][data-state="open"] {
       display: flex;
       flex-direction: column;
