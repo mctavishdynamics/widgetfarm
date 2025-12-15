@@ -11,11 +11,12 @@
 
     width: 100%;
     height: 100%;
-
     min-height: 32px;
     min-width: 32px;
 
     border-radius: 2px;
+    /* To account for the 2px border on the bottom, we subtract 1px from the
+    bottom padding */
     padding: 8px 8px 7px 8px;
 
     background-color: var(--background-color);
@@ -100,7 +101,6 @@
       [data-part="button"] {
         &:active {
           border-bottom-width: 1px;
-          margin-top: 1px;
         }
       }
     }

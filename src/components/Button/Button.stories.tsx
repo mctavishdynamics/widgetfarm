@@ -12,7 +12,18 @@ const meta = {
   decorators: [
     (Story) => (
       <ButtonProvider className={styles.Button}>
-        <Story />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            alignItems: "center",
+          }}
+        >
+          <Button>123</Button>
+          <Button>123</Button>
+          <Story />
+        </div>
       </ButtonProvider>
     ),
   ],
