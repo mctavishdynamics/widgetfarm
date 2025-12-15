@@ -12,18 +12,7 @@ const meta = {
   decorators: [
     (Story) => (
       <ButtonProvider className={styles.Button}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            alignItems: "center",
-          }}
-        >
-          <Button>123</Button>
-          <Button>123</Button>
-          <Story />
-        </div>
+        <Story />
       </ButtonProvider>
     ),
   ],
@@ -54,17 +43,21 @@ export const Default: Story = {
 };
 
 export const WithIcon: Story = {
-  args: {
-    children: (
-      <>
+  render: (args) => (
+    <div style={{ display: "flex", gap: "16px" }}>
+      <Button {...args}>
         <TbEye />
         Primary Button
-      </>
-    ),
-  },
+      </Button>
+      <Button {...args}>
+        <TbEye />
+      </Button>
+    </div>
+  ),
   play: async ({ canvas, args }) => {
-    const button = canvas.getByRole("button");
-    await userEvent.click(button);
-    await expect(args.onClick).toHaveBeenCalled();
+    const buttons = canvas.getAllByRole("button");
+    await userEvent.click(buttons[0]);
+    await userEvent.click(buttons[1]);
+    await expect(args.onClick).toHaveBeenCalledTimes(2);
   },
 };

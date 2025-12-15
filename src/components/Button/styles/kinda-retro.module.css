@@ -125,7 +125,6 @@
 
         &:active {
           border-bottom-width: 1px;
-          margin-top: 1px;
           background-color: var(--outline--active--background-color);
         }
       }
