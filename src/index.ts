@@ -69,3 +69,15 @@ export {
   type CheckboxProviderProps,
 } from "./components/Checkbox/CheckboxProvider";
 export { useCheckboxContext } from "./components/Checkbox/useCheckboxContext";
+
+// NumberInput
+export {
+  NumberInput,
+  type NumberInputProps,
+} from "./components/NumberInput/NumberInput";
+export { NumberInputContext } from "./components/NumberInput/NumberInputContext";
+export {
+  NumberInputProvider,
+  type NumberInputProviderProps,
+} from "./components/NumberInput/NumberInputProvider";
+export { useNumberInputContext } from "./components/NumberInput/useNumberInputContext";

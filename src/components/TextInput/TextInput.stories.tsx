@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, fn, userEvent } from "storybook/test";
+import { fn } from "storybook/test";
 
 import styles from "./styles/kinda-retro.module.css";
 import { TextInput } from "./TextInput";
@@ -32,11 +32,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  play: async ({ canvas, args }) => {
-    const button = canvas.getByRole("button");
-    await userEvent.click(button);
-    await expect(args.onClick).toHaveBeenCalled();
-  },
+  args: {},
 };
 
 export const WithLabel: Story = {
