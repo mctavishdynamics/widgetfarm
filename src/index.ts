@@ -10,6 +10,7 @@ export {
   ButtonProvider,
   type ButtonProviderProps,
 } from "./components/Button/ButtonProvider";
+export { normalizeProps as normalizeButtonProps } from "./components/Button/normalizeProps.ts";
 export { useButtonContext } from "./components/Button/useButtonContext";
 
 // TextInput
@@ -81,3 +82,12 @@ export {
   type NumberInputProviderProps,
 } from "./components/NumberInput/NumberInputProvider";
 export { useNumberInputContext } from "./components/NumberInput/useNumberInputContext";
+
+// Dialog
+export { Dialog, type DialogProps } from "./components/Dialog/Dialog";
+export { DialogContext } from "./components/Dialog/DialogContext";
+export {
+  DialogProvider,
+  type DialogProviderProps,
+} from "./components/Dialog/DialogProvider";
+export { useDialogContext } from "./components/Dialog/useDialogContext";
