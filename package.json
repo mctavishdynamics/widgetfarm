@@ -18,15 +18,18 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "prepack": "npm run build",
-    "dev": "vite",
-    "clean": "node scripts/clean.js",
     "build": "npm run clean && tsc --project tsconfig.build.json && vite build && npm run copy-styles",
+    "build-storybook": "storybook build",
+    "clean": "node scripts/clean.js",
     "copy-styles": "node scripts/copy-styles.js",
+    "dev": "vite",
     "lint": "eslint .",
+    "prebuild": "npm run typia:generate",
+    "prepack": "npm run build",
+    "prestorybook": "npm run typia:generate",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "typia:generate": "typia generate --input ./typia --output ./src/_generated --project ./tsconfig.build.json"
   },
   "peerDependencies": {
     "react": "^19.2.0",
@@ -52,6 +55,7 @@
     "prettier": "^3.7.4",
     "prettier-plugin-organize-imports": "^4.3.0",
     "storybook": "^10.1.4",
+    "ts-patch": "^3.3.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"
@@ -59,8 +63,10 @@
   "dependencies": {
     "@ark-ui/react": "^5.29.1",
     "@zag-js/checkbox": "^1.31.0",
+    "@zag-js/dialog": "^1.31.1",
     "@zag-js/number-input": "^1.31.1",
     "@zag-js/react": "^1.31.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "typia": "^10.1.0"
   }
 }

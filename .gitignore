@@ -27,3 +27,4 @@ dist-ssr
 storybook-static
 
 widgetfarm*.tgz
+src/_generated
