@@ -1,0 +1,11 @@
+.Clipboard {
+  [data-part="indicator"] {
+    display: none;
+  }
+
+  &[data-copied] {
+    [data-part="indicator"] {
+      display: block;
+    }
+  }
+}

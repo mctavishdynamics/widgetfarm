@@ -63,6 +63,7 @@
   "dependencies": {
     "@ark-ui/react": "^5.29.1",
     "@zag-js/checkbox": "^1.31.0",
+    "@zag-js/clipboard": "^1.31.1",
     "@zag-js/dialog": "^1.31.1",
     "@zag-js/number-input": "^1.31.1",
     "@zag-js/react": "^1.31.0",
