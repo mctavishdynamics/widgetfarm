@@ -91,3 +91,12 @@ export {
   type DialogProviderProps,
 } from "./components/Dialog/DialogProvider";
 export { useDialogContext } from "./components/Dialog/useDialogContext";
+
+// Drawer
+export { Drawer, type DrawerProps } from "./components/Drawer/Drawer";
+export { DrawerContext } from "./components/Drawer/DrawerContext";
+export {
+  DrawerProvider,
+  type DrawerProviderProps,
+} from "./components/Drawer/DrawerProvider";
+export { useDrawerContext } from "./components/Drawer/useDrawerContext";

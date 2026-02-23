@@ -14,6 +14,8 @@ export interface CheckboxProps
   ref?: Ref<HTMLLabelElement>;
   inputRef?: Ref<HTMLInputElement>;
 
+  controlFirst?: boolean;
+
   checked?: checkbox.CheckedState;
   defaultChecked?: checkbox.CheckedState;
 
@@ -22,13 +24,14 @@ export interface CheckboxProps
 
 export const Checkbox = (props: CheckboxProps) => {
   const {
+    checked,
+    className,
+    controlFirst = false,
+    defaultChecked,
+    inputRef,
     label,
     labelRenderer,
-    className,
     ref,
-    inputRef,
-    checked,
-    defaultChecked,
     onCheckedChange = () => {},
   } = props;
 
@@ -51,9 +54,11 @@ export const Checkbox = (props: CheckboxProps) => {
       })}
       ref={ref}
     >
-      {renderLabel({ label, labelRenderer }, (label) => {
-        return <span {...api.getLabelProps()}>{label}</span>;
-      })}
+      {!controlFirst
+        ? renderLabel({ label, labelRenderer }, (label) => {
+            return <span {...api.getLabelProps()}>{label}</span>;
+          })
+        : null}
       <div {...api.getControlProps()}>
         <div {...api.getIndicatorProps()}>
           {api.checked
@@ -64,6 +69,11 @@ export const Checkbox = (props: CheckboxProps) => {
         </div>
       </div>
       <input {...api.getHiddenInputProps()} ref={inputRef} />
+      {controlFirst
+        ? renderLabel({ label, labelRenderer }, (label) => {
+            return <span {...api.getLabelProps()}>{label}</span>;
+          })
+        : null}
     </label>
   );
 };
