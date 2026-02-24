@@ -24,6 +24,7 @@ export interface DrawerProps
   title?: ReactNode;
   description?: ReactNode;
   position?: IDrawerPosition;
+  width?: string;
 }
 
 export function Drawer(props: DrawerProps) {
@@ -37,6 +38,7 @@ export function Drawer(props: DrawerProps) {
     title,
     trigger,
     triggerRenderer,
+    width = "auto",
   } = props;
   const machineProps = ZagDialog.pickProps({
     ...{ id: useId() },
@@ -59,20 +61,34 @@ export function Drawer(props: DrawerProps) {
         <>
           <div
             {...api.getBackdropProps()}
+            data-variant={"drawer"}
             className={clsx(context.className, className)}
           />
           <div
             {...api.getPositionerProps()}
-            className={clsx(context.className, className)}
+            data-variant={"drawer"}
             data-position={position}
+            className={clsx(context.className, className)}
           >
-            <div {...api.getContentProps()}>
-              <div {...api.getTitleProps()}>{title}</div>
-              <div {...api.getDescriptionProps()}>{description}</div>
-              <div data-scope={"dialog"} data-part={"body"}>
+            <div
+              {...api.getContentProps()}
+              data-variant={"drawer"}
+              style={{ width }}
+            >
+              <div {...api.getTitleProps()} data-variant={"drawer"}>
+                {title}
+              </div>
+              <div {...api.getDescriptionProps()} data-variant={"drawer"}>
+                {description}
+              </div>
+              <div
+                data-scope={"dialog"}
+                data-part={"body"}
+                data-variant={"drawer"}
+              >
                 {children}
               </div>
-              <button {...api.getCloseTriggerProps()}>
+              <button {...api.getCloseTriggerProps()} data-variant={"drawer"}>
                 <TbX />
               </button>
             </div>

@@ -35,6 +35,7 @@ type Story = StoryObj<typeof meta>;
 export const Right: Story = {
   args: {
     defaultOpen: true,
+    width: "calc(100vw - 32px)"
   },
 };
 
