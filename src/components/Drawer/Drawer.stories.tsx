@@ -35,7 +35,27 @@ type Story = StoryObj<typeof meta>;
 export const Right: Story = {
   args: {
     defaultOpen: true,
-    width: "calc(100vw - 32px)"
+    width: "calc(100vw - 32px)",
+  },
+};
+
+export const RightScrollable: Story = {
+  args: {
+    defaultOpen: true,
+    width: "calc(100vw - 32px)",
+    children: Array(1024)
+      .fill("Scrollable Content")
+      .map((child) => <p>{child}</p>),
+  },
+};
+
+export const RightNoTitleAndDescription: Story = {
+  args: {
+    title: null,
+    description: null,
+
+    defaultOpen: true,
+    width: "calc(100vw - 32px)",
   },
 };
 
@@ -43,6 +63,7 @@ export const Left: Story = {
   args: {
     defaultOpen: true,
     position: "left",
+    width: "calc(100vw - 32px)",
   },
 };
 
@@ -50,6 +71,7 @@ export const Top: Story = {
   args: {
     defaultOpen: true,
     position: "top",
+    height: "calc(100vh - 32px)",
   },
 };
 
@@ -57,5 +79,6 @@ export const Bottom: Story = {
   args: {
     defaultOpen: true,
     position: "bottom",
+    height: "calc(100vh - 32px)",
   },
 };

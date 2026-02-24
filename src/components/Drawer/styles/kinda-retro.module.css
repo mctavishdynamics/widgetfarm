@@ -60,6 +60,9 @@
     position: relative;
     background: #fff;
 
+    display: flex;
+    flex-direction: column;
+
     box-shadow: 0 0 32px var(--theme-color-black--a-25);
 
     [data-part="title"] {
@@ -76,6 +79,8 @@
 
     [data-part="body"] {
       padding: 16px;
+      flex-grow: 1;
+      overflow: auto;
     }
 
     [data-part="close-trigger"] {

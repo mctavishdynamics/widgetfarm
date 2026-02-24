@@ -24,7 +24,9 @@ export interface DrawerProps
   title?: ReactNode;
   description?: ReactNode;
   position?: IDrawerPosition;
+
   width?: string;
+  height?: string;
 }
 
 export function Drawer(props: DrawerProps) {
@@ -34,6 +36,7 @@ export function Drawer(props: DrawerProps) {
     children,
     className,
     description,
+    height = "auto",
     position = "right",
     title,
     trigger,
@@ -73,14 +76,22 @@ export function Drawer(props: DrawerProps) {
             <div
               {...api.getContentProps()}
               data-variant={"drawer"}
-              style={{ width }}
+              style={{
+                ...(position === "left" || position === "right"
+                  ? { width }
+                  : { height }),
+              }}
             >
-              <div {...api.getTitleProps()} data-variant={"drawer"}>
-                {title}
-              </div>
-              <div {...api.getDescriptionProps()} data-variant={"drawer"}>
-                {description}
-              </div>
+              {title ? (
+                <div {...api.getTitleProps()} data-variant={"drawer"}>
+                  {title}
+                </div>
+              ) : null}
+              {description ? (
+                <div {...api.getDescriptionProps()} data-variant={"drawer"}>
+                  {description}
+                </div>
+              ) : null}
               <div
                 data-scope={"dialog"}
                 data-part={"body"}
