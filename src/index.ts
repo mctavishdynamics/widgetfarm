@@ -100,3 +100,18 @@ export {
   type DrawerProviderProps,
 } from "./components/Drawer/DrawerProvider";
 export { useDrawerContext } from "./components/Drawer/useDrawerContext";
+
+// Drawer
+export {
+  FileUpload,
+  type FileUploadProps,
+} from "./components/FileUpload/FileUpload";
+export { FileUploadContext } from "./components/FileUpload/FileUploadContext";
+
+
+// FileUpload
+export {
+  FileUploadProvider,
+  type FileUploadProviderProps,
+} from "./components/FileUpload/FileUploadProvider";
+export { useFileUploadContext } from "./components/FileUpload/useFileUploadContext";
