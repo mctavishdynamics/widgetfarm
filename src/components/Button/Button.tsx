@@ -73,7 +73,9 @@ export function Button(props: ButtonProps) {
         {...(disabled ? { disabled: true, "aria-disabled": true } : {})}
         {...notDataProps}
       >
-        <span>{children}</span>
+        <span data-scope={DATA_SCOPE} data-part={"children"}>
+          {children}
+        </span>
       </button>
     </div>
   );

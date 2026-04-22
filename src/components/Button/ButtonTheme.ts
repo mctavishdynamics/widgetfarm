@@ -1,5 +1,4 @@
 import { type ComplexStyleRule, style } from "@vanilla-extract/css";
-import { CssSelectorBuilder } from "../../theme/CssSelectorBuilder.ts";
 import type { DesignToken } from "../../theme/DesignTokens.ts";
 import { Theme } from "../../theme/Theme.ts";
 import { type ButtonState, DATA_SCOPE } from "./Button.tsx";
@@ -12,6 +11,10 @@ export interface MixinArgs {
 // Theme Variables
 
 export interface ButtonDesignTokens {
+  color: DesignToken<string>;
+  colorHover: DesignToken<string>;
+  colorActive: DesignToken<string>;
+
   background: DesignToken<string>;
   backgroundHover: DesignToken<string>;
   backgroundActive: DesignToken<string>;
@@ -40,10 +43,36 @@ export interface ButtonDesignTokens {
 
   outlineWidth: DesignToken<string>;
   outlineColor: DesignToken<string>;
+
+  paddingTop: DesignToken<string>;
+  paddingRight: DesignToken<string>;
+  paddingBottom: DesignToken<string>;
+  paddingLeft: DesignToken<string>;
+
+  focusOutlineWidth: DesignToken<string>;
+  focusOutlineStyle: DesignToken<string>;
+  focusOutlineColor: DesignToken<string>;
+
+  focusRingWidth: DesignToken<string>;
+  focusRingStyle: DesignToken<string>;
+  focusRingColor: DesignToken<string>;
 }
 
 export class ButtonTheme extends Theme<ButtonDesignTokens> {
   dataScope = DATA_SCOPE;
+
+  color(args: MixinArgs = {}): ComplexStyleRule {
+    const { state } = args;
+
+    switch (state) {
+      case "hover":
+        return { color: this.token("colorHover") };
+      case "active":
+        return { color: this.token("colorActive") };
+      default:
+        return { color: this.token("color") };
+    }
+  }
 
   background(args: MixinArgs = {}): ComplexStyleRule {
     const { state } = args;
@@ -100,14 +129,24 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
       alignItems: "center",
       justifyContent: "center",
       gap: "4px",
-      padding: "6px 10px",
+      padding: [
+        this.token("paddingTop"),
+        this.token("paddingRight"),
+        this.token("paddingBottom"),
+        this.token("paddingLeft"),
+      ].join(" "),
     };
   }
 
   svg(_args: MixinArgs = {}): ComplexStyleRule {
     return {
       [this.scopedSelector.parent.has("svg").build()]: {
-        padding: "6px 10px 6px 6px",
+        padding: [
+          this.token("paddingTop"),
+          this.token("paddingRight"),
+          this.token("paddingBottom"),
+          this.token("paddingLeft"),
+        ].join(" "),
 
         fontFamily: "sans-serif",
         fontSize: "1rem",
@@ -140,14 +179,21 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
       // BUTTON
       [this.scopedSelector.dataPart("button").build()]: {
         all: "unset",
-        whiteSpace: "nowrap",
 
         ...this.background(),
         ...this.border(),
         ...this.boxShadow(),
-        ...this.boxModel(),
 
-        ...this.svg(),
+        [this.scopedSelector.dataPart("children").build()]: {
+          whiteSpace: "nowrap",
+
+          fontSize: "1rem",
+          lineHeight: "1rem",
+
+          ...this.color(),
+          ...this.boxModel(),
+          ...this.svg(),
+        },
       },
 
       // HOVER STATE
@@ -155,6 +201,10 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
         {
           ...this.background({ state: "hover" }),
           ...this.border({ state: "hover" }),
+
+          [this.scopedSelector.dataPart("children").build()]: {
+            ...this.color({ state: "hover" }),
+          },
         },
 
       // ACTIVE STATE
@@ -163,10 +213,20 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
           ...this.background({ state: "active" }),
           ...this.border({ state: "active" }),
 
-          [new CssSelectorBuilder().parent.child("span").build()]: {
+          [this.scopedSelector.dataPart("children").build()]: {
             transform: "translateY(1px)",
+            ...this.color({ state: "active" }),
           },
         },
+
+      [this.scopedSelector.dataPart("button").focusVisible.build()]: {
+        outline: "2px solid black",
+
+        [this.scopedSelector.dataPart("children").build()]: {
+          outline: "1px solid #000",
+          outlineOffset: "-2px",
+        },
+      },
     });
   }
 }

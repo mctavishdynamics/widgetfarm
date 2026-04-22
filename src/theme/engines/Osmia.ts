@@ -1,4 +1,4 @@
-import { TinyColor } from "@ctrl/tinycolor";
+import { TinyColor, mostReadable } from "@ctrl/tinycolor";
 
 interface OsmiaArgs {
   backdropColor: string;
@@ -91,6 +91,43 @@ export class Osmia {
 
   get borderLeftColor() {
     return this.borderTopColor;
+  }
+
+  get focusOutlineWidth() {
+    return "1px";
+  }
+
+  get focusOutlineStyle() {
+    return "solid";
+  }
+
+  get focusOutlineColor() {
+    return new TinyColor("black");
+  }
+
+  get focusRingWidth() {
+    return "1px";
+  }
+
+  get focusRingStyle() {
+    return "solid";
+  }
+
+  get focusRingColor() {
+    return new TinyColor("black");
+  }
+
+  get color() {
+    const readable = mostReadable(
+      this.backgroundColor,
+      [this.backgroundColor.tint(80), this.backgroundColor.shade(80)],
+      {
+        level: "AA",
+        size: "small",
+      },
+    );
+
+    return readable || new TinyColor("black");
   }
 
   calculateSpecularColor(color: string | TinyColor, amount = 1) {
