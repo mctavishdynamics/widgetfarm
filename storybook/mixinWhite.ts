@@ -1,6 +1,6 @@
 import { Osmia } from "../src/theme/engines/osmia/Osmia.js";
 
-export const mixin5050 = {
+export const mixinWhite = {
   globals: {
     backgrounds: { value: "custom" },
   },
@@ -8,8 +8,8 @@ export const mixin5050 = {
     backgrounds: {
       options: {
         custom: {
-          name: "5050",
-          value: Osmia.BACKDROP_COLOR_5050,
+          name: "white",
+          value: Osmia.BACKDROP_COLOR_WHITE,
         },
       },
     },

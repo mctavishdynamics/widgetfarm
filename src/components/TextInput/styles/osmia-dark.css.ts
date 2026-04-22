@@ -1,8 +1,8 @@
-import { Osmia } from "../../../theme/engines/Osmia.ts";
+import { Osmia } from "../../../theme/engines/osmia/Osmia.ts";
 import { makeTheme } from "../makeTheme.ts";
 
 const engine = new Osmia({
-  backdropColor: "#222",
+  backdropColor: Osmia.BACKDROP_COLOR_DARK,
   inset: true,
 });
 

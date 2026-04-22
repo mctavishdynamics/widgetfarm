@@ -1,4 +1,4 @@
-import type { Osmia } from "../../theme/engines/Osmia.ts";
+import type { Osmia } from "../../theme/engines/osmia/Osmia.ts";
 import { ButtonTheme } from "./ButtonTheme.ts";
 
 export function makeTheme(engine: Osmia) {

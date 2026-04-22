@@ -1,3 +1,5 @@
+import { Osmia } from "../src/theme/engines/osmia/Osmia.js";
+
 export const mixinLight = {
   globals: {
     backgrounds: { value: "custom" },
@@ -7,7 +9,7 @@ export const mixinLight = {
       options: {
         custom: {
           name: "light",
-          value: "#fff",
+          value: Osmia.BACKDROP_COLOR_LIGHT,
         },
       },
     },

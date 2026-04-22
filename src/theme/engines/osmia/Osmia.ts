@@ -1,4 +1,5 @@
 import { TinyColor, mostReadable } from "@ctrl/tinycolor";
+import { BackgroundColor } from "./BackgroundColor.ts";
 
 interface OsmiaArgs {
   backdropColor: string;
@@ -7,6 +8,12 @@ interface OsmiaArgs {
 }
 
 export class Osmia {
+  static BACKDROP_COLOR_WHITE = "#fff";
+  static BACKDROP_COLOR_LIGHT = "#eee";
+  static BACKDROP_COLOR_DARK = "#333";
+  static BACKDROP_COLOR_BLACK = "#000";
+  static BACKDROP_COLOR_5050 = "#808080";
+
   protected _args: OsmiaArgs;
   protected _backdropColor: TinyColor;
   protected _hover: boolean;
@@ -64,51 +71,7 @@ export class Osmia {
   }
 
   get backgroundColor() {
-    let color = new TinyColor(this.backdropColor);
-
-    // 5050 Territory
-    if (color.getBrightness() > 128 - 10 && color.getBrightness() < 128 + 10) {
-      if (this.isInset) {
-        return color.brighten(25);
-      } else {
-        return color;
-      }
-    }
-
-    // DARK
-    if (color.isDark()) {
-      // INSET
-      if (this.isInset) {
-      }
-      // NOT INSET
-      else {
-      }
-    }
-    // LIGHT
-    else {
-      // INSET
-      if (this.isInset) {
-        if (this.isHover) {
-          color = color.brighten(10);
-        }
-
-        if (this.isActive) {
-          color = color.shade(2.5);
-        }
-      }
-      // NOT INSET
-      else {
-        if (this.isHover) {
-          color = color.brighten(5);
-        }
-
-        if (this.isActive) {
-          color = color.shade(10);
-        }
-      }
-    }
-
-    return color;
+    return new BackgroundColor(this).get();
   }
 
   get backdropContrastColor() {
