@@ -17,7 +17,7 @@ export interface TextInputProps
   ref?: Ref<HTMLInputElement>;
 }
 
-const DATA_SCOPE = "text-input";
+export const DATA_SCOPE = "text-input";
 
 export function TextInput(props: TextInputProps) {
   const {

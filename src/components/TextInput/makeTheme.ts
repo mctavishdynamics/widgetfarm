@@ -1,8 +1,8 @@
 import type { Osmia } from "../../theme/engines/Osmia.ts";
-import { ButtonTheme } from "./ButtonTheme.ts";
+import { TextInputTheme } from "./TextInputTheme.ts";
 
 export function makeTheme(engine: Osmia) {
-  return new ButtonTheme({
+  return new TextInputTheme({
     // Color
 
     color: {
@@ -42,7 +42,7 @@ export function makeTheme(engine: Osmia) {
     },
 
     backgroundHover: {
-      value: engine.hover().backgroundColor.toHexString(),
+      value: engine.backgroundColor.toHexString(),
     },
 
     backgroundActive: {
@@ -52,7 +52,7 @@ export function makeTheme(engine: Osmia) {
     // Border Colors
 
     borderTopColor: {
-      value: engine.borderSpecularColor.toHexString(),
+      value: engine.borderDiffuseColor.toHexString(),
     },
 
     borderTopColorHover: {
@@ -64,7 +64,7 @@ export function makeTheme(engine: Osmia) {
     },
 
     borderRightColor: {
-      value: engine.borderDiffuseColor.toHexString(),
+      value: engine.borderSpecularColor.toHexString(),
     },
 
     borderRightColorHover: {
@@ -76,19 +76,19 @@ export function makeTheme(engine: Osmia) {
     },
 
     borderBottomColor: {
-      value: engine.borderDiffuseColor.toHexString(),
+      value: engine.borderSpecularColor.toHexString(),
     },
 
     borderBottomColorHover: {
-      value: engine.hover().borderDiffuseColor.toHexString(),
+      value: engine.hover().borderSpecularColor.toHexString(),
     },
 
     borderBottomColorActive: {
-      value: engine.active().borderDiffuseColor.toHexString(),
+      value: engine.active().borderSpecularColor.toHexString(),
     },
 
     borderLeftColor: {
-      value: engine.borderSpecularColor.toHexString(),
+      value: engine.borderDiffuseColor.toHexString(),
     },
 
     borderLeftColorHover: {
@@ -96,7 +96,7 @@ export function makeTheme(engine: Osmia) {
     },
 
     borderLeftColorActive: {
-      value: engine.active().borderSpecularColor.toHexString(),
+      value: engine.active().borderDiffuseColor.toHexString(),
     },
 
     // Border Misc
@@ -108,6 +108,8 @@ export function makeTheme(engine: Osmia) {
     borderRadius: {
       value: "4px",
     },
+
+    // Outline
 
     outlineWidth: {
       value: "1px",
