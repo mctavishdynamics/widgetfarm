@@ -103,6 +103,7 @@ export const Default5050: Story = {
 };
 
 export const WithIcon: Story = {
+  ...mixinLight,
   render: (args) => (
     <div style={{ display: "flex", gap: "16px" }}>
       <Button {...args}>
