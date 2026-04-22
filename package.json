@@ -42,6 +42,7 @@
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vanilla-extract/vite-plugin": "^5.2.2",
     "@vitejs/plugin-react": "^5",
     "change-case": "^5.4.4",
     "cli-table3": "^0.6.5",
@@ -56,12 +57,13 @@
     "prettier-plugin-organize-imports": "^4.3.0",
     "storybook": "^10.3.3",
     "ts-patch": "^3.3.0",
+    "typescript": "^5",
     "typescript-eslint": "^8.57.2",
-    "vite": "^7",
-    "typescript": "^5"
+    "vite": "^7"
   },
   "dependencies": {
     "@ark-ui/react": "^5.35.0",
+    "@ctrl/tinycolor": "^4.2.0",
     "@zag-js/checkbox": "^1.38.2",
     "@zag-js/clipboard": "^1.38.2",
     "@zag-js/dialog": "^1.38.2",

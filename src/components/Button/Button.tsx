@@ -3,6 +3,7 @@ import type { ButtonHTMLAttributes } from "react";
 import type { FormStateProps } from "../../FormStateProps";
 import { useButtonContext } from "./useButtonContext";
 
+export type ButtonState = "default" | "hover" | "active" | "focus";
 export type ButtonColor = "default" | "red" | "green" | "pink" | "purple";
 export type ButtonVariant = "default" | "outline";
 
@@ -13,7 +14,7 @@ export interface ButtonProps
   color?: ButtonColor;
 }
 
-const DATA_SCOPE = "button";
+export const DATA_SCOPE = "button";
 
 export function Button(props: ButtonProps) {
   const {
@@ -31,6 +32,8 @@ export function Button(props: ButtonProps) {
     isDirty,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isTouched,
+
+    children,
 
     ...rest
   } = props;
@@ -69,7 +72,9 @@ export function Button(props: ButtonProps) {
         type={type}
         {...(disabled ? { disabled: true, "aria-disabled": true } : {})}
         {...notDataProps}
-      />
+      >
+        <span>{children}</span>
+      </button>
     </div>
   );
 }

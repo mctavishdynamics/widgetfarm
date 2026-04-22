@@ -4,14 +4,14 @@ import { expect, fn, userEvent } from "storybook/test";
 import { TbEye } from "react-icons/tb";
 import { Button } from "./Button";
 import { ButtonProvider } from "./ButtonProvider";
-import styles from "./styles/kinda-retro.module.css";
+import { theme } from "./styles/osmia.css.ts";
 
 const meta = {
   title: "Button",
   component: Button,
   decorators: [
     (Story) => (
-      <ButtonProvider className={styles.Button}>
+      <ButtonProvider className={theme}>
         <Story />
       </ButtonProvider>
     ),
