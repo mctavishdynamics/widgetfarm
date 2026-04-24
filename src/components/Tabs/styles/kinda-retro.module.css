@@ -1,0 +1,261 @@
+.Button {
+  [data-part="button"] {
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 14px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    height: 100%;
+    min-height: 32px;
+    min-width: 32px;
+
+    border-radius: 2px;
+    /* To account for the 2px border on the bottom, we subtract 1px from the
+    bottom padding */
+    padding: 8px 8px 7px 8px;
+
+    background-color: var(--background-color);
+    color: var(--color);
+    border-style: solid;
+    border-color: var(--border-color);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  /* Icon */
+  svg {
+    width: 16px;
+    height: 16px;
+    margin: -8px 0;
+  }
+}
+
+/* Hover and Active States */
+.Button {
+  &:not([disabled]) {
+    [data-part="button"] {
+      &:hover {
+        background-color: var(--hover--background-color);
+        color: var(--hover--color);
+      }
+
+      &:active {
+        background-color: var(--active--background-color);
+        color: var(--active--color);
+      }
+    }
+  }
+}
+
+/* Focus State */
+.Button {
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
+    [data-part="button"] {
+      position: relative;
+      outline: 0;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+
+        border-width: 1px;
+        border-style: dotted;
+        border-color: var(--focus--border-color);
+      }
+    }
+  }
+}
+
+/* Disabled */
+.Button {
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.Button {
+  [data-part="button"] {
+    user-select: none;
+  }
+}
+
+/* VARIANT: default */
+.Button {
+  &[data-variant="default"] {
+    [data-part="button"] {
+      border-width: 1px 2px 2px 1px;
+    }
+
+    &:not([disabled]) {
+      [data-part="button"] {
+        &:active {
+          border-bottom-width: 1px;
+        }
+      }
+    }
+  }
+}
+
+/* VARIANT: outline */
+.Button {
+  &[data-variant="outline"] {
+    [data-part="button"] {
+      color: var(--outline--color);
+      background-color: transparent;
+      border-width: 1px 2px 2px 1px;
+      border-color: var(--outline--border-color);
+    }
+
+    &:not([disabled]) {
+      [data-part="button"] {
+        &:hover {
+          background-color: var(--outline--hover--background-color);
+        }
+
+        &:active {
+          border-bottom-width: 1px;
+          background-color: var(--outline--active--background-color);
+        }
+      }
+    }
+  }
+}
+
+.Button {
+  &[data-size="xs"] {
+    font-size: 10px;
+  }
+
+  &[data-size="sm"] {
+    font-size: 12px;
+  }
+
+  &[data-size="md"] {
+    font-size: 16px;
+  }
+
+  &[data-size="lg"] {
+    font-size: 18px;
+  }
+
+  &[data-size="xl"] {
+    font-size: 20px;
+  }
+
+  &[data-size="xxl"] {
+    font-size: 24px;
+  }
+}
+
+.Button {
+  &,
+  &[data-color="default"] {
+    --background-color: var(--theme-color-light-gray-200);
+    --color: var(--theme-color-gray-600);
+    --border-color: var(--theme-color-light-gray-600);
+
+    --hover--background-color: var(--theme-color-light-gray-300);
+    --hover--color: var(--theme-color-gray);
+
+    --active--background-color: var(--theme-color-light-gray-600);
+    --active--color: var(--theme-color-gray-700);
+
+    --outline--color: var(--theme-color-gray-600);
+    --outline--border-color: var(--theme-color-gray-100);
+    --outline--hover--background-color: var(--theme-color-gray-25);
+    --outline--active--background-color: var(--theme-color-gray-100);
+
+    --focus--border-color: var(--theme-color-gray-800);
+  }
+
+  /* COLOR: red */
+  &[data-color="red"] {
+    --background-color: var(--theme-color-red);
+    --color: var(--theme-color-red-900);
+    --border-color: var(--theme-color-red-600);
+
+    --hover--background-color: var(--theme-color-red-400);
+    --hover--color: var(--theme-color-red-800);
+
+    --active--background-color: var(--theme-color-red-600);
+    --active--color: var(--theme-color-red-950);
+
+    --outline--color: var(--theme-color-red-600);
+    --outline--border-color: var(--theme-color-red-400);
+    --outline--hover--background-color: var(--theme-color-red-25);
+    --outline--active--background-color: var(--theme-color-red-200);
+
+    --focus--border-color: var(--theme-color-red-800);
+  }
+
+  /* COLOR: green */
+  &[data-color="green"] {
+    --background-color: var(--theme-color-green);
+    --color: var(--theme-color-green-900);
+    --border-color: var(--theme-color-green-600);
+
+    --hover--background-color: var(--theme-color-green-400);
+    --hover--color: var(--theme-color-green-800);
+
+    --active--background-color: var(--theme-color-green-600);
+    --active--color: var(--theme-color-green-950);
+
+    --outline--color: var(--theme-color-green-600);
+    --outline--border-color: var(--theme-color-green-400);
+    --outline--hover--background-color: var(--theme-color-green--a-25);
+    --outline--active--background-color: var(--theme-color-green--a-50);
+
+    --focus--border-color: var(--theme-color-green-800);
+  }
+
+  /* COLOR: pink */
+  &[data-color="pink"] {
+    --background-color: var(--theme-color-pink);
+    --color: var(--theme-color-pink-50);
+    --border-color: var(--theme-color-pink-600);
+
+    --hover--background-color: var(--theme-color-pink-400);
+    --hover--color: var(--theme-color-pink-800);
+
+    --active--background-color: var(--theme-color-pink-600);
+    --active--color: var(--theme-color-pink-950);
+
+    --outline--color: var(--theme-color-pink-600);
+    --outline--border-color: var(--theme-color-pink-400);
+    --outline--hover--background-color: var(--theme-color-pink--a-25);
+    --outline--active--background-color: var(--theme-color-pink--a-50);
+
+    --focus--border-color: var(--theme-color-pink-800);
+  }
+
+  /* COLOR: pink */
+  &[data-color="purple"] {
+    --background-color: var(--theme-color-purple);
+    --color: var(--theme-color-purple-25);
+    --border-color: var(--theme-color-purple-600);
+
+    --hover--background-color: var(--theme-color-purple-400);
+    --hover--color: var(--theme-color-white);
+
+    --active--background-color: var(--theme-color-purple-600);
+    --active--color: var(--theme-color-purple-50);
+
+    --outline--color: var(--theme-color-purple-600);
+    --outline--border-color: var(--theme-color-purple-400);
+    --outline--hover--background-color: var(--theme-color-purple--a-25);
+    --outline--active--background-color: var(--theme-color-purple--a-50);
+
+    --focus--border-color: var(--theme-color-purple-800);
+  }
+}

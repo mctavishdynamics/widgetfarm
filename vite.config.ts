@@ -1,3 +1,5 @@
+/// <reference types="vitest/config" />
+
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
@@ -23,5 +25,10 @@ export default defineConfig({
         },
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: "node",
+    include: ["src/**/*.test.ts"],
   },
 });

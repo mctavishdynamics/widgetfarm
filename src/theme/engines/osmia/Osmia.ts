@@ -1,15 +1,17 @@
 import { TinyColor, mostReadable } from "@ctrl/tinycolor";
-import { BackgroundColor } from "./BackgroundColor.ts";
+import { Osmia_BackgroundColor } from "./Osmia_BackgroundColor.ts";
+import { Osmia_RaisedBox } from "./Osmia_RaisedBox.ts";
 
 interface OsmiaArgs {
   backdropColor: string;
   hover?: boolean;
   active?: boolean;
+  inset?: boolean;
 }
 
 export class Osmia {
   static BACKDROP_COLOR_WHITE = "#fff";
-  static BACKDROP_COLOR_LIGHT = "#eee";
+  static BACKDROP_COLOR_LIGHT = "#ddd";
   static BACKDROP_COLOR_DARK = "#333";
   static BACKDROP_COLOR_BLACK = "#000";
   static BACKDROP_COLOR_5050 = "#808080";
@@ -20,12 +22,7 @@ export class Osmia {
   protected _active: boolean;
   protected _inset: boolean;
 
-  constructor(args: {
-    backdropColor: string;
-    hover?: boolean;
-    active?: boolean;
-    inset?: boolean;
-  }) {
+  constructor(args: OsmiaArgs) {
     const {
       backdropColor,
       hover = false,
@@ -71,7 +68,11 @@ export class Osmia {
   }
 
   get backgroundColor() {
-    return new BackgroundColor(this).get();
+    return new Osmia_BackgroundColor(this).get();
+  }
+
+  get raisedBox() {
+    return new Osmia_RaisedBox(this);
   }
 
   get backdropContrastColor() {

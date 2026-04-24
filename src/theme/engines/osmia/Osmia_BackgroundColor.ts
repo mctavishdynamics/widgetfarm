@@ -1,7 +1,7 @@
 import { TinyColor } from "@ctrl/tinycolor";
-import { OsmiaFragment } from "./OsmiaFragment.ts";
+import { OsmiaComponent } from "./OsmiaComponent.ts";
 
-export class BackgroundColor extends OsmiaFragment {
+export class Osmia_BackgroundColor extends OsmiaComponent {
   getInsetDark() {
     const brightnessThreshold = new TinyColor("#222").getBrightness();
 
@@ -28,14 +28,28 @@ export class BackgroundColor extends OsmiaFragment {
     const brightnessThreshold = new TinyColor("#eee").getBrightness();
 
     if (this.backdropColor.getBrightness() > brightnessThreshold) {
-      return this.backdropColor.shade(5);
+      if (this.engine.isHover) {
+        return this.backdropColor.shade(2.5);
+      } else {
+        return this.backdropColor.shade(5);
+      }
     } else {
-      return this.backdropColor.brighten(10);
+      if (this.engine.isHover) {
+        return this.backdropColor.brighten(20);
+      } else {
+        return this.backdropColor.brighten(10);
+      }
     }
   }
 
   get5050() {
-    return this.backdropColor.brighten(20);
+    if (this.engine.isHover) {
+      return this.backdropColor.brighten(30);
+    } else if (this.engine.isActive) {
+      return this.backdropColor.shade(10);
+    } else {
+      return this.backdropColor.brighten(20);
+    }
   }
 
   get() {

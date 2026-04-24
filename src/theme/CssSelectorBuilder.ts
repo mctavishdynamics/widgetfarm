@@ -21,6 +21,16 @@ export class CssSelectorBuilder {
     return this;
   }
 
+  selected() {
+    this.selectorParts.push(`[data-selected]`);
+    return this;
+  }
+
+  notSelected() {
+    this.selectorParts.push(`:not([data-selected])`);
+    return this;
+  }
+
   not(selector: string) {
     this.selectorParts.push(`:not(${selector})`);
     return this;

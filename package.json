@@ -29,7 +29,9 @@
     "prestorybook": "npm run typia:generate",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "typia:generate": "typia generate --input ./typia --output ./src/_generated --project ./tsconfig.build.json"
+    "typia:generate": "typia generate --input ./typia --output ./src/_generated --project ./tsconfig.build.json",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "peerDependencies": {
     "react": "^19.2.4",
@@ -71,6 +73,7 @@
     "@zag-js/file-upload": "^1.40.0",
     "@zag-js/number-input": "^1.40.0",
     "@zag-js/react": "^1.40.0",
+    "@zag-js/tabs": "^1.40.0",
     "react-icons": "^5.6.0",
     "typia": "^12.1.0-dev.20260325"
   }
