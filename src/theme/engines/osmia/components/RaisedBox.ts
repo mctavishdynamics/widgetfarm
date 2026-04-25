@@ -86,7 +86,7 @@ export class RaisedBox extends OsmiaComponent {
   }
 
   get outlineOffset() {
-    return "1px";
+    return "0";
   }
 
   get outlineColor(): TinyColor {
