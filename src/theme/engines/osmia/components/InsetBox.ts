@@ -5,24 +5,20 @@ export class InsetBox extends OsmiaComponent {
     return this.engine.colors.background.base;
   }
 
-  get backdropContrastColor() {
-    return this.engine.colors.backdropContrast.base;
-  }
-
   get borderTopColor() {
-    return this.engine.colors.background.specular;
+    return this.engine.colors.background.diffuse;
   }
 
   get borderRightColor() {
-    return this.engine.colors.background.diffuse;
+    return this.engine.colors.background.base;
   }
 
   get borderBottomColor() {
-    return this.engine.colors.background.diffuse;
+    return this.engine.colors.background.base;
   }
 
   get borderLeftColor() {
-    return this.engine.colors.background.specular;
+    return this.engine.colors.background.diffuse;
   }
 
   get borderWidth() {
@@ -37,7 +33,15 @@ export class InsetBox extends OsmiaComponent {
     return "1px";
   }
 
+  get outlineStyle() {
+    return "solid";
+  }
+
   get outlineColor() {
     return this.engine.colors.backdropContrast.base;
+  }
+
+  get outlineOffset() {
+    return "0";
   }
 }

@@ -11,7 +11,7 @@ export class OutlineMixin<
   }
 
   getOutlineOffset() {
-    return "-1px";
+    return this.token("outlineOffset");
   }
 
   withOutline(): StyleRule {

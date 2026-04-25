@@ -16,7 +16,7 @@ export function makeOsmiaTheme(engine: Osmia) {
     },
 
     outlineOffset: {
-      value: "1px",
+      value: engine.components.insetBox.outlineOffset,
     },
 
     color: {
@@ -66,81 +66,77 @@ export function makeOsmiaTheme(engine: Osmia) {
     // Border Colors
 
     borderTopColor: {
-      value: engine.components.raisedBox.borderTopColor.toHexString(),
+      value: engine.components.insetBox.borderTopColor.toHexString(),
     },
 
     borderTopColorHover: {
-      value: engine.hover().components.raisedBox.borderTopColor.toHexString(),
+      value: engine.hover().components.insetBox.borderTopColor.toHexString(),
     },
 
     borderTopColorActive: {
-      value: engine.active().components.raisedBox.borderTopColor.toHexString(),
+      value: engine.active().components.insetBox.borderTopColor.toHexString(),
     },
 
     borderRightColor: {
-      value: engine.components.raisedBox.borderRightColor.toHexString(),
+      value: engine.components.insetBox.borderRightColor.toHexString(),
     },
 
     borderRightColorHover: {
-      value: engine.hover().components.raisedBox.borderRightColor.toHexString(),
+      value: engine.hover().components.insetBox.borderRightColor.toHexString(),
     },
 
     borderRightColorActive: {
-      value: engine
-        .active()
-        .components.raisedBox.borderRightColor.toHexString(),
+      value: engine.active().components.insetBox.borderRightColor.toHexString(),
     },
 
     borderBottomColor: {
-      value: engine.components.raisedBox.borderBottomColor.toHexString(),
+      value: engine.components.insetBox.borderBottomColor.toHexString(),
     },
 
     borderBottomColorHover: {
-      value: engine
-        .hover()
-        .components.raisedBox.borderBottomColor.toHexString(),
+      value: engine.hover().components.insetBox.borderBottomColor.toHexString(),
     },
 
     borderBottomColorActive: {
       value: engine
         .active()
-        .components.raisedBox.borderBottomColor.toHexString(),
+        .components.insetBox.borderBottomColor.toHexString(),
     },
 
     borderLeftColor: {
-      value: engine.components.raisedBox.borderLeftColor.toHexString(),
+      value: engine.components.insetBox.borderLeftColor.toHexString(),
     },
 
     borderLeftColorHover: {
-      value: engine.hover().components.raisedBox.borderLeftColor.toHexString(),
+      value: engine.hover().components.insetBox.borderLeftColor.toHexString(),
     },
 
     borderLeftColorActive: {
-      value: engine.active().components.raisedBox.borderLeftColor.toHexString(),
+      value: engine.active().components.insetBox.borderLeftColor.toHexString(),
     },
 
     // Border Misc
 
     borderWidth: {
-      value: engine.components.raisedBox.borderWidth,
+      value: engine.components.insetBox.borderWidth,
     },
 
     borderRadius: {
-      value: engine.components.raisedBox.borderRadius,
+      value: engine.components.insetBox.borderRadius,
     },
 
     // Outline
 
     outlineWidth: {
-      value: engine.components.raisedBox.outlineWidth,
+      value: engine.components.insetBox.outlineWidth,
     },
 
     outlineStyle: {
-      value: engine.components.raisedBox.outlineStyle,
+      value: engine.components.insetBox.outlineStyle,
     },
 
     outlineColor: {
-      value: engine.components.raisedBox.outlineColor.toHexString(),
+      value: engine.components.insetBox.outlineColor.toHexString(),
     },
 
     focusOutlineWidth: {

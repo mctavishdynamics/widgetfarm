@@ -69,14 +69,11 @@ export class TextInputTheme extends Theme<TextInputDesignTokens> {
       [this.scopedSelector.dataPart("control").build()]: {
         position: "relative",
         display: "flex",
-
         height: "32px",
 
-        outline: `1px solid ${this.token("outlineColor")}`,
-        outlineOffset: 0,
-
+        ...this.borderMixin.withBorderRadius(),
+        ...this.outlineMixin.withOutline(),
         background: this.token("outlineColor"),
-        borderRadius: "3px",
       },
 
       // INPUT
@@ -91,22 +88,17 @@ export class TextInputTheme extends Theme<TextInputDesignTokens> {
 
         ...this.colorMixin.withColor(),
         ...this.backgroundMixin.withBackground(),
-
-        borderTop: `${this.token("borderWidth")} solid ${this.token("borderTopColor")}`,
-        borderRight: `${this.token("borderWidth")} solid ${this.token("borderRightColor")}`,
-        borderBottom: `${this.token("borderWidth")} solid ${this.token("borderBottomColor")}`,
-        borderLeft: `${this.token("borderWidth")} solid ${this.token("borderLeftColor")}`,
-
-        borderRadius: "4px",
-        padding: "8px",
+        ...this.borderMixin.withBorder(),
+        ...this.borderMixin.withBorderRadius(),
+        ...this.paddingMixin.withPadding(),
       },
 
-      [this.scopedSelector.dataPart("input").hover.build()]: {
-        ...this.backgroundMixin.withBackground({ isHover: true }),
+      [this.scopedSelector.dataPart("control").focusWithin.build()]: {
+        ...this.focusOutlineMixin.withOutline(),
       },
 
-      [this.scopedSelector.dataPart("input").active.build()]: {
-        ...this.backgroundMixin.withBackground({ isActive: true }),
+      [this.scopedSelector.dataPart("input").focusWithin.build()]: {
+        ...this.focusRingMixin.withOutline(),
       },
     });
   }
