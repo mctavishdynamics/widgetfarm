@@ -2,7 +2,7 @@ import { OsmiaPart } from "../OsmiaPart.ts";
 
 export class FocusOutline extends OsmiaPart {
   get width() {
-    return "1px";
+    return "2px";
   }
 
   get style() {
@@ -10,6 +10,10 @@ export class FocusOutline extends OsmiaPart {
   }
 
   get color() {
-    return this.engine.colors.backdropContrast.base;
+    return this.engine.colors.backdropContrast.readable;
+  }
+
+  get offset() {
+    return "0";
   }
 }

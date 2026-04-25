@@ -1,6 +1,20 @@
 import { type StyleRule, style } from "@vanilla-extract/css";
+import type { BackgroundDesignTokenMixin } from "../../theme/designTokenMixins/BackgroundDesignTokenMixin.ts";
+import type { BorderDesignTokenMixin } from "../../theme/designTokenMixins/BorderDesignTokenMixin.ts";
+import type { ColorDesignTokenMixin } from "../../theme/designTokenMixins/ColorDesignTokenMixin.ts";
+import type { FocusOutlineDesignTokenMixin } from "../../theme/designTokenMixins/FocusOutlineDesignTokenMixin.ts";
+import type { FocusRingDesignTokenMixin } from "../../theme/designTokenMixins/FocusRingDesignTokenMixin.ts";
+import type { OutlineDesignTokenMixin } from "../../theme/designTokenMixins/OutlineDesignTokenMixin.ts";
+import type { PaddingDesignTokenMixin } from "../../theme/designTokenMixins/PaddingDesignTokenMixin.ts";
 import type { DesignToken } from "../../theme/DesignTokens.ts";
 import { Theme } from "../../theme/Theme.ts";
+import { BackgroundMixin } from "../../theme/themeMixins/BackgroundMixin.ts";
+import { BorderMixin } from "../../theme/themeMixins/BorderMixin.ts";
+import { ColorMixin } from "../../theme/themeMixins/ColorMixin.ts";
+import { FocusOutlineMixin } from "../../theme/themeMixins/FocusOutlineMixin.ts";
+import { FocusRingMixin } from "../../theme/themeMixins/FocusRingMixin.ts";
+import { OutlineMixin } from "../../theme/themeMixins/OutlineMixin.ts";
+import { PaddingMixin } from "../../theme/themeMixins/PaddingMixin.ts";
 import { DATA_SCOPE } from "./Tabs.tsx";
 
 export interface MixinArgs {
@@ -12,123 +26,61 @@ export interface MixinArgs {
 ////////////////////////////////////////////////////////////////////////////////
 // Theme Variables
 
-export interface TabsDesignTokens {
-  //////////////////////////////////////////////////////////////////////////////
-  // TEXT
-
-  color: DesignToken<string>;
-  colorHover: DesignToken<string>;
-  colorActive: DesignToken<string>;
-
-  //////////////////////////////////////////////////////////////////////////////
-  // BACKGROUND
-
-  background: DesignToken<string>;
-  backgroundHover: DesignToken<string>;
-  backgroundActive: DesignToken<string>;
+export interface TabsDesignTokens
+  extends
+    ColorDesignTokenMixin,
+    BackgroundDesignTokenMixin,
+    BorderDesignTokenMixin,
+    OutlineDesignTokenMixin,
+    PaddingDesignTokenMixin,
+    FocusOutlineDesignTokenMixin,
+    FocusRingDesignTokenMixin {
   backgroundSelected: DesignToken<string>;
+
+  borderTopColorSelected: DesignToken<string>;
+  borderRightColorSelected: DesignToken<string>;
+  borderBottomColorSelected: DesignToken<string>;
+  borderLeftColorSelected: DesignToken<string>;
 
   contentBackground: DesignToken<string>;
   contentBackgroundHover: DesignToken<string>;
   contentBackgroundActive: DesignToken<string>;
 
-  //////////////////////////////////////////////////////////////////////////////
-  // BORDER
-
-  borderRadius: DesignToken<string>;
-  borderWidth: DesignToken<string>;
-
-  borderColor?: DesignToken<string>;
-  borderColorHover?: DesignToken<string>;
-  borderColorActive?: DesignToken<string>;
-
   contentBorderColor?: DesignToken<string>;
   contentBorderColorHover?: DesignToken<string>;
   contentBorderColorActive?: DesignToken<string>;
-
-  borderTopColor: DesignToken<string>;
-  borderRightColor: DesignToken<string>;
-  borderBottomColor: DesignToken<string>;
-  borderLeftColor: DesignToken<string>;
 
   contentBorderTopColor?: DesignToken<string>;
   contentBorderRightColor?: DesignToken<string>;
   contentBorderBottomColor?: DesignToken<string>;
   contentBorderLeftColor?: DesignToken<string>;
 
-  borderTopColorHover?: DesignToken<string>;
-  borderRightColorHover?: DesignToken<string>;
-  borderBottomColorHover?: DesignToken<string>;
-  borderLeftColorHover?: DesignToken<string>;
-
-  contentBorderTopColorHover?: DesignToken<string>;
-  contentBorderRightColorHover?: DesignToken<string>;
-  contentBorderBottomColorHover?: DesignToken<string>;
-  contentBorderLeftColorHover?: DesignToken<string>;
-
-  borderTopColorActive?: DesignToken<string>;
-  borderRightColorActive?: DesignToken<string>;
-  borderBottomColorActive?: DesignToken<string>;
-  borderLeftColorActive?: DesignToken<string>;
-
-  contentBorderTopColorActive?: DesignToken<string>;
-  contentBorderRightColorActive?: DesignToken<string>;
-  contentBorderBottomColorActive?: DesignToken<string>;
-  contentBorderLeftColorActive?: DesignToken<string>;
-
-  borderTopColorSelected?: DesignToken<string>;
-  borderRightColorSelected?: DesignToken<string>;
-  borderBottomColorSelected?: DesignToken<string>;
-  borderLeftColorSelected?: DesignToken<string>;
-
-  //////////////////////////////////////////////////////////////////////////////
-  // OUTLINE
-
   boxShadow: DesignToken<string>;
-
-  outlineWidth: DesignToken<string>;
-  outlineColor: DesignToken<string>;
-
-  paddingTop: DesignToken<string>;
-  paddingRight: DesignToken<string>;
-  paddingBottom: DesignToken<string>;
-  paddingLeft: DesignToken<string>;
-
-  focusOutlineWidth: DesignToken<string>;
-  focusOutlineStyle: DesignToken<string>;
-  focusOutlineColor: DesignToken<string>;
-
-  focusRingWidth: DesignToken<string>;
-  focusRingStyle: DesignToken<string>;
-  focusRingColor: DesignToken<string>;
-  focusRingOffset: DesignToken<string>;
 }
 
 export class TabsTheme extends Theme<TabsDesignTokens> {
   dataScope = DATA_SCOPE;
 
-  color(): StyleRule {
-    return { color: this.token("color") };
-  }
+  colorMixin = new ColorMixin(this);
+  backgroundMixin = new BackgroundMixin(this);
+  borderMixin = new BorderMixin(this);
+  outlineMixin = new OutlineMixin(this);
+  paddingMixin = new PaddingMixin(this);
+  focusRingMixin = new FocusRingMixin(this);
+  focusOutlineMixin = new FocusOutlineMixin(this);
 
   withBackgroundColor(args: MixinArgs = {}): StyleRule {
-    const { isSelected = false, isHover = false, isActive = false } = args;
+    const { isSelected = false } = args;
 
     if (isSelected) {
       return { background: this.token("backgroundSelected") };
     } else {
-      if (isHover) {
-        return { background: this.token("backgroundHover") };
-      } else if (isActive) {
-        return { background: this.token("backgroundActive") };
-      } else {
-        return { background: this.token("background") };
-      }
+      return this.backgroundMixin.withBackground(args);
     }
   }
 
   withBorder(args: MixinArgs = {}): StyleRule {
-    const { isSelected = false, isHover = false, isActive = false } = args;
+    const { isSelected = false } = args;
 
     if (isSelected) {
       return {
@@ -138,54 +90,16 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
         borderLeft: `${this.token("borderWidth")} solid ${this.token("borderLeftColorSelected")}`,
       };
     } else {
-      if (isHover) {
-        return {
-          borderTop: `${this.token("borderWidth")} solid ${this.token("borderTopColorHover")}`,
-          borderRight: `${this.token("borderWidth")} solid ${this.token("borderRightColorHover")}`,
-          borderBottom: `${this.token("borderWidth")} solid ${this.token("borderBottomColorHover")}`,
-          borderLeft: `${this.token("borderWidth")} solid ${this.token("borderLeftColorHover")}`,
-        };
-      } else if (isActive) {
-        return {
-          borderTop: `${this.token("borderWidth")} solid ${this.token("borderTopColorActive")}`,
-          borderRight: `${this.token("borderWidth")} solid ${this.token("borderRightColorActive")}`,
-          borderBottom: `${this.token("borderWidth")} solid ${this.token("borderBottomColorActive")}`,
-          borderLeft: `${this.token("borderWidth")} solid ${this.token("borderLeftColorActive")}`,
-        };
-      } else {
-        return {
-          borderTop: `${this.token("borderWidth")} solid ${this.token("borderTopColor")}`,
-          borderRight: `${this.token("borderWidth")} solid ${this.token("borderRightColor")}`,
-          borderBottom: `${this.token("borderWidth")} solid ${this.token("borderBottomColor")}`,
-          borderLeft: `${this.token("borderWidth")} solid ${this.token("borderLeftColor")}`,
-        };
-      }
+      return this.borderMixin.withBorder(args);
     }
-  }
-
-  outline(): StyleRule {
-    return {
-      outline: `${this.token("outlineWidth")} solid ${this.token("outlineColor")}`,
-      outlineOffset: "-1px",
-    };
   }
 
   withTab(args: MixinArgs = {}): StyleRule {
     return {
+      ...this.colorMixin.withColor(args),
       ...this.withBorder(args),
       ...this.withBackgroundColor(args),
-      ...this.outline(),
-    };
-  }
-
-  withTabPadding(): StyleRule {
-    return {
-      padding: [
-        this.token("paddingTop"),
-        this.token("paddingRight"),
-        this.token("paddingBottom"),
-        this.token("paddingLeft"),
-      ].join(" "),
+      ...this.outlineMixin.withOutline(),
     };
   }
 
@@ -230,7 +144,7 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
 
       [this.scopedSelector.dataPart("label").build()]: {
         display: "flex",
-        ...this.withTabPadding(),
+        ...this.paddingMixin.withPadding(),
       },
 
       [this.scopedSelector.dataPart("trigger").selected().build()]: {
@@ -241,15 +155,10 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
         position: "relative",
         zIndex: 1000,
 
-        outline: "2px solid black",
+        ...this.focusOutlineMixin.withOutline(),
 
         [this.scopedSelector.dataPart("label").build()]: {
-          outline: [
-            this.token("focusRingWidth"),
-            this.token("focusRingStyle"),
-            this.token("focusRingColor"),
-          ].join(" "),
-          outlineOffset: this.token("focusRingOffset"),
+          ...this.focusRingMixin.withOutline(),
         },
       },
 

@@ -4,10 +4,10 @@ import { TabsTheme } from "./TabsTheme.ts";
 const TAB_PADDING_X = "16px";
 const TAB_PADDING_Y = "8px";
 
-export function makeTheme(engine: Osmia) {
+export function makeOsmiaTheme(engine: Osmia) {
   return new TabsTheme({
-    // Color
-
+    ////////////////////////////////////////////////////////////////////////////
+    // COLOR
     color: {
       value: engine.color.toHexString(),
     },
@@ -20,7 +20,8 @@ export function makeTheme(engine: Osmia) {
       value: engine.active().color.toHexString(),
     },
 
-    // Padding
+    ////////////////////////////////////////////////////////////////////////////
+    // PADDING
 
     paddingTop: {
       value: TAB_PADDING_Y,
@@ -72,7 +73,34 @@ export function makeTheme(engine: Osmia) {
     },
 
     ////////////////////////////////////////////////////////////////////////////
+    // BOX SHADOW
+
+    boxShadow: {
+      value: engine.components.raisedBox.boxShadow,
+    },
+
+    ////////////////////////////////////////////////////////////////////////////
     // BORDER
+
+    borderRadius: {
+      value: engine.components.raisedBox.borderRadius,
+    },
+
+    borderWidth: {
+      value: engine.components.raisedBox.borderWidth,
+    },
+
+    borderColor: {
+      value: engine.components.raisedBox.backgroundColor.toHexString(),
+    },
+
+    borderColorHover: {
+      value: engine.components.raisedBox.backgroundColor.toHexString(),
+    },
+
+    borderColorActive: {
+      value: engine.components.raisedBox.backgroundColor.toHexString(),
+    },
 
     borderTopColor: {
       value: engine.components.raisedBox.borderTopColor.toHexString(),
@@ -152,15 +180,8 @@ export function makeTheme(engine: Osmia) {
         .borderLeftColor.toHexString(),
     },
 
-    // Border Misc
-
-    borderWidth: {
-      value: engine.components.raisedBox.borderWidth,
-    },
-
-    borderRadius: {
-      value: engine.components.raisedBox.borderRadius,
-    },
+    ////////////////////////////////////////////////////////////////////////////
+    // OUTLINE
 
     outlineWidth: {
       value: engine.components.raisedBox.outlineWidth,
@@ -170,16 +191,31 @@ export function makeTheme(engine: Osmia) {
       value: engine.components.raisedBox.outlineColor.toHexString(),
     },
 
+    outlineStyle: {
+      value: "solid",
+    },
+
+    outlineOffset: {
+      value: "1px",
+    },
+
+    ////////////////////////////////////////////////////////////////////////////
+    // FOCUS OUTLINE+FOCUS RING
+
     focusOutlineWidth: {
-      value: engine.parts.outline.width,
+      value: engine.parts.focusOutline.width,
     },
 
     focusOutlineStyle: {
-      value: engine.parts.focusRing.style,
+      value: engine.parts.focusOutline.style,
     },
 
     focusOutlineColor: {
-      value: engine.parts.focusRing.color.toHexString(),
+      value: engine.parts.focusOutline.color.toHexString(),
+    },
+
+    focusOutlineOffset: {
+      value: engine.parts.focusOutline.offset,
     },
 
     focusRingWidth: {
@@ -195,9 +231,5 @@ export function makeTheme(engine: Osmia) {
     },
 
     focusRingOffset: { value: engine.parts.focusRing.offset },
-
-    boxShadow: {
-      value: engine.components.raisedBox.boxShadow,
-    },
   }).buildCss();
 }
