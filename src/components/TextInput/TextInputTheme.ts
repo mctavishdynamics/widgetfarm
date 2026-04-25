@@ -1,165 +1,49 @@
-import { type ComplexStyleRule, style } from "@vanilla-extract/css";
-import type { DesignToken } from "../../theme/DesignTokens.ts";
+import { style } from "@vanilla-extract/css";
+import type { BackgroundDesignTokenMixin } from "../../theme/designTokenMixins/BackgroundDesignTokenMixin.ts";
+import type { BorderDesignTokenMixin } from "../../theme/designTokenMixins/BorderDesignTokenMixin.ts";
+import type { ColorDesignTokenMixin } from "../../theme/designTokenMixins/ColorDesignTokenMixin.ts";
+import type { FocusOutlineDesignTokenMixin } from "../../theme/designTokenMixins/FocusOutlineDesignTokenMixin.ts";
+import type { FocusRingDesignTokenMixin } from "../../theme/designTokenMixins/FocusRingDesignTokenMixin.ts";
+import type { OutlineDesignTokenMixin } from "../../theme/designTokenMixins/OutlineDesignTokenMixin.ts";
+import type { PaddingDesignTokenMixin } from "../../theme/designTokenMixins/PaddingDesignTokenMixin.ts";
 import { Theme } from "../../theme/Theme.ts";
+import { BackgroundMixin } from "../../theme/themeMixins/BackgroundMixin.ts";
+import { BorderMixin } from "../../theme/themeMixins/BorderMixin.ts";
+import { ColorMixin } from "../../theme/themeMixins/ColorMixin.ts";
+import { FocusOutlineMixin } from "../../theme/themeMixins/FocusOutlineMixin.ts";
+import { FocusRingMixin } from "../../theme/themeMixins/FocusRingMixin.ts";
+import { OutlineMixin } from "../../theme/themeMixins/OutlineMixin.ts";
+import { PaddingMixin } from "../../theme/themeMixins/PaddingMixin.ts";
 import { DATA_SCOPE } from "./TextInput.tsx";
 
 export interface MixinArgs {
-  state?: "default" | "hover" | "active";
+  isHover?: boolean;
+  isActive?: boolean;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Theme Variables
 
-export interface TextInputDesignTokens {
-  color: DesignToken<string>;
-  colorHover: DesignToken<string>;
-  colorActive: DesignToken<string>;
-
-  background: DesignToken<string>;
-  backgroundHover: DesignToken<string>;
-  backgroundActive: DesignToken<string>;
-
-  borderColor?: DesignToken<string>;
-  borderColorHover?: DesignToken<string>;
-  borderColorActive?: DesignToken<string>;
-
-  borderTopColor?: DesignToken<string>;
-  borderRightColor?: DesignToken<string>;
-  borderBottomColor?: DesignToken<string>;
-  borderLeftColor?: DesignToken<string>;
-
-  borderTopColorHover?: DesignToken<string>;
-  borderRightColorHover?: DesignToken<string>;
-  borderBottomColorHover?: DesignToken<string>;
-  borderLeftColorHover?: DesignToken<string>;
-
-  borderTopColorActive?: DesignToken<string>;
-  borderRightColorActive?: DesignToken<string>;
-  borderBottomColorActive?: DesignToken<string>;
-  borderLeftColorActive?: DesignToken<string>;
-
-  borderRadius: DesignToken<string>;
-  borderWidth: DesignToken<string>;
-
-  outlineWidth: DesignToken<string>;
-  outlineColor: DesignToken<string>;
-
-  paddingTop: DesignToken<string>;
-  paddingRight: DesignToken<string>;
-  paddingBottom: DesignToken<string>;
-  paddingLeft: DesignToken<string>;
-
-  focusOutlineWidth: DesignToken<string>;
-  focusOutlineStyle: DesignToken<string>;
-  focusOutlineColor: DesignToken<string>;
-
-  focusRingWidth: DesignToken<string>;
-  focusRingStyle: DesignToken<string>;
-  focusRingColor: DesignToken<string>;
-}
+export interface TextInputDesignTokens
+  extends
+    ColorDesignTokenMixin,
+    BackgroundDesignTokenMixin,
+    BorderDesignTokenMixin,
+    OutlineDesignTokenMixin,
+    PaddingDesignTokenMixin,
+    FocusOutlineDesignTokenMixin,
+    FocusRingDesignTokenMixin {}
 
 export class TextInputTheme extends Theme<TextInputDesignTokens> {
   dataScope = DATA_SCOPE;
 
-  color(args: MixinArgs = {}): ComplexStyleRule {
-    const { state } = args;
-
-    switch (state) {
-      case "hover":
-        return { color: this.token("colorHover") };
-      case "active":
-        return { color: this.token("colorActive") };
-      default:
-        return { color: this.token("color") };
-    }
-  }
-
-  background(args: MixinArgs = {}): ComplexStyleRule {
-    const { state } = args;
-
-    switch (state) {
-      case "hover":
-        return { background: this.token("backgroundHover") };
-      case "active":
-        return { background: this.token("backgroundActive") };
-      default:
-        return { background: this.token("background") };
-    }
-  }
-
-  border(args: MixinArgs = {}): ComplexStyleRule {
-    let topColor = this.token("borderTopColor");
-    let rightColor = this.token("borderRightColor");
-    let bottomColor = this.token("borderBottomColor");
-    let leftColor = this.token("borderLeftColor");
-
-    switch (args.state) {
-      case "hover":
-        topColor = this.token("borderTopColorHover");
-        rightColor = this.token("borderRightColorHover");
-        bottomColor = this.token("borderBottomColorHover");
-        leftColor = this.token("borderLeftColorHover");
-        break;
-      case "active":
-        topColor = this.token("borderTopColorActive");
-        rightColor = this.token("borderRightColorActive");
-        bottomColor = this.token("borderBottomColorActive");
-        leftColor = this.token("borderLeftColorActive");
-        break;
-      default:
-        break;
-    }
-
-    return {
-      borderRadius: this.token("borderRadius"),
-      borderTop: `${this.token("borderWidth")} solid ${topColor}`,
-      borderRight: `${this.token("borderWidth")} solid ${rightColor}`,
-      borderBottom: `${this.token("borderWidth")} solid ${bottomColor}`,
-      borderLeft: `${this.token("borderWidth")} solid ${leftColor}`,
-    };
-  }
-
-  boxShadow(_args: MixinArgs = {}): ComplexStyleRule {
-    return { boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)" };
-  }
-
-  boxModel(_args: MixinArgs = {}): ComplexStyleRule {
-    return {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "4px",
-      padding: [
-        this.token("paddingTop"),
-        this.token("paddingRight"),
-        this.token("paddingBottom"),
-        this.token("paddingLeft"),
-      ].join(" "),
-    };
-  }
-
-  svg(_args: MixinArgs = {}): ComplexStyleRule {
-    return {
-      [this.scopedSelector.parent.has("svg").build()]: {
-        padding: [
-          this.token("paddingTop"),
-          this.token("paddingRight"),
-          this.token("paddingBottom"),
-          this.token("paddingLeft"),
-        ].join(" "),
-
-        fontFamily: "sans-serif",
-        fontSize: "1rem",
-        lineHeight: "1rem",
-      },
-
-      [this.scopedSelector.parent.child("svg").build()]: {
-        width: "1rem",
-        height: "1rem",
-        opacity: "0.4",
-      },
-    };
-  }
+  backgroundMixin = new BackgroundMixin(this);
+  borderMixin = new BorderMixin(this);
+  colorMixin = new ColorMixin(this);
+  focusOutlineMixin = new FocusOutlineMixin(this);
+  focusRingMixin = new FocusRingMixin(this);
+  outlineMixin = new OutlineMixin(this);
+  paddingMixin = new PaddingMixin(this);
 
   buildCss() {
     return style({
@@ -178,7 +62,7 @@ export class TextInputTheme extends Theme<TextInputDesignTokens> {
         textOverflow: "ellipsis",
         overflow: "hidden",
 
-        ...this.color(),
+        ...this.colorMixin.withColor(),
       },
 
       // CONTROL
@@ -205,8 +89,8 @@ export class TextInputTheme extends Theme<TextInputDesignTokens> {
         position: "relative",
         zIndex: 0,
 
-        ...this.color(),
-        ...this.background(),
+        ...this.colorMixin.withColor(),
+        ...this.backgroundMixin.withBackground(),
 
         borderTop: `${this.token("borderWidth")} solid ${this.token("borderTopColor")}`,
         borderRight: `${this.token("borderWidth")} solid ${this.token("borderRightColor")}`,
@@ -218,11 +102,11 @@ export class TextInputTheme extends Theme<TextInputDesignTokens> {
       },
 
       [this.scopedSelector.dataPart("input").hover.build()]: {
-        ...this.background({ state: "hover" }),
+        ...this.backgroundMixin.withBackground({ isHover: true }),
       },
 
       [this.scopedSelector.dataPart("input").active.build()]: {
-        ...this.background({ state: "active" }),
+        ...this.backgroundMixin.withBackground({ isActive: true }),
       },
     });
   }

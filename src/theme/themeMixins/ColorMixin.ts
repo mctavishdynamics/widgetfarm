@@ -11,15 +11,19 @@ interface Args {
 export class ColorMixin<
   T extends DesignTokens<T> & ColorDesignTokenMixin,
 > extends ThemeMixin<T> {
-  withColor(args: Args = {}): StyleRule {
+  getColor(args: Args = {}): string {
     const { isHover = false, isActive = false } = args;
 
     if (isHover) {
-      return { color: this.token("colorHover") };
+      return this.token("colorHover");
     } else if (isActive) {
-      return { color: this.token("colorActive") };
+      return this.token("colorActive");
     } else {
-      return { color: this.token("color") };
+      return this.token("color");
     }
+  }
+
+  withColor(args: Args = {}): StyleRule {
+    return { color: this.getColor(args) };
   }
 }

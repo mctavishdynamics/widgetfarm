@@ -192,11 +192,11 @@ export function makeOsmiaTheme(engine: Osmia) {
     },
 
     outlineStyle: {
-      value: "solid",
+      value: engine.components.raisedBox.outlineStyle,
     },
 
     outlineOffset: {
-      value: "1px",
+      value: engine.components.raisedBox.outlineOffset,
     },
 
     ////////////////////////////////////////////////////////////////////////////
