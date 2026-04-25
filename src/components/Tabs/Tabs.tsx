@@ -17,11 +17,13 @@ export interface TabsProps {
   defaultValue?: string;
   renderOnlyActive?: boolean;
   className?: HTMLElement["className"];
+
+  activationMode?: zagTabs.Props["activationMode"];
 }
 
 export const DATA_SCOPE = "tabs";
 
-function renderTab(tab: ITab, api: zagTabs.Api) {
+function renderContent(tab: ITab, api: zagTabs.Api) {
   return (
     <div {...api.getContentProps({ value: tab.value })} key={tab.value}>
       {tab.content instanceof Function ? tab.content(api) : tab.content}
@@ -37,6 +39,7 @@ export function Tabs(props: TabsProps) {
     tabs = [],
     defaultValue,
     renderOnlyActive = false,
+    activationMode,
   } = props;
 
   //////////////////////////////////////////////////////////////////////////////
@@ -46,6 +49,7 @@ export function Tabs(props: TabsProps) {
   const service = useMachine(zagTabs.machine, {
     id: usedId,
     defaultValue,
+    activationMode,
   });
 
   const api = zagTabs.connect(service, normalizeProps);
@@ -66,15 +70,17 @@ export function Tabs(props: TabsProps) {
             </span>
           </button>
         ))}
+      </div>
+      <div data-scope={DATA_SCOPE} data-part={"container"}>
         {tabs.map((tab) => {
           if (renderOnlyActive) {
             if (tab.value === api.value) {
-              return renderTab(tab, api);
+              return renderContent(tab, api);
             } else {
               return null;
             }
           } else {
-            return renderTab(tab, api);
+            return renderContent(tab, api);
           }
         })}
       </div>

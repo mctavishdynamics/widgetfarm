@@ -38,65 +38,71 @@ export function makeTheme(engine: Osmia) {
     // Background
 
     background: {
-      value: engine.backgroundColor.toHexString(),
+      value: engine.components.raisedBox.backgroundColor.toHexString(),
     },
 
     backgroundHover: {
-      value: engine.hover().backgroundColor.toHexString(),
+      value: engine.hover().components.raisedBox.backgroundColor.toHexString(),
     },
 
     backgroundActive: {
-      value: engine.active().backgroundColor.toHexString(),
+      value: engine.active().components.raisedBox.backgroundColor.toHexString(),
     },
 
     // Border Colors
 
     borderTopColor: {
-      value: engine.borderSpecularColor.toHexString(),
+      value: engine.components.raisedBox.borderTopColor.toHexString(),
     },
 
     borderTopColorHover: {
-      value: engine.hover().borderSpecularColor.toHexString(),
+      value: engine.hover().components.raisedBox.borderTopColor.toHexString(),
     },
 
     borderTopColorActive: {
-      value: engine.active().borderSpecularColor.toHexString(),
+      value: engine.active().components.raisedBox.borderTopColor.toHexString(),
     },
 
     borderRightColor: {
-      value: engine.borderDiffuseColor.toHexString(),
+      value: engine.components.raisedBox.borderRightColor.toHexString(),
     },
 
     borderRightColorHover: {
-      value: engine.hover().borderDiffuseColor.toHexString(),
+      value: engine.hover().components.raisedBox.borderRightColor.toHexString(),
     },
 
     borderRightColorActive: {
-      value: engine.active().borderDiffuseColor.toHexString(),
+      value: engine
+        .active()
+        .components.raisedBox.borderRightColor.toHexString(),
     },
 
     borderBottomColor: {
-      value: engine.borderDiffuseColor.toHexString(),
+      value: engine.components.raisedBox.borderBottomColor.toHexString(),
     },
 
     borderBottomColorHover: {
-      value: engine.hover().borderDiffuseColor.toHexString(),
+      value: engine
+        .hover()
+        .components.raisedBox.borderBottomColor.toHexString(),
     },
 
     borderBottomColorActive: {
-      value: engine.active().borderDiffuseColor.toHexString(),
+      value: engine
+        .active()
+        .components.raisedBox.borderBottomColor.toHexString(),
     },
 
     borderLeftColor: {
-      value: engine.borderSpecularColor.toHexString(),
+      value: engine.components.raisedBox.borderLeftColor.toHexString(),
     },
 
     borderLeftColorHover: {
-      value: engine.hover().borderSpecularColor.toHexString(),
+      value: engine.hover().components.raisedBox.borderLeftColor.toHexString(),
     },
 
     borderLeftColorActive: {
-      value: engine.active().borderSpecularColor.toHexString(),
+      value: engine.active().components.raisedBox.borderLeftColor.toHexString(),
     },
 
     // Border Misc
@@ -114,31 +120,35 @@ export function makeTheme(engine: Osmia) {
     },
 
     outlineColor: {
-      value: engine.backdropContrastColor.toHexString(),
+      value: engine.colors.backdropContrast.base.toHexString(),
     },
 
     focusOutlineWidth: {
-      value: engine.focusRingWidth,
+      value: engine.parts.focusOutline.width,
     },
 
     focusOutlineStyle: {
-      value: engine.focusOutlineStyle,
+      value: engine.parts.focusOutline.style,
     },
 
     focusOutlineColor: {
-      value: engine.focusOutlineColor.toHexString(),
+      value: engine.parts.focusOutline.color.toHexString(),
     },
 
     focusRingWidth: {
-      value: engine.focusRingWidth,
+      value: engine.parts.focusRing.width,
     },
 
     focusRingStyle: {
-      value: engine.focusRingStyle,
+      value: engine.parts.focusRing.style,
     },
 
     focusRingColor: {
-      value: engine.focusRingColor.toHexString(),
+      value: engine.parts.focusRing.color.toHexString(),
+    },
+
+    boxShadow: {
+      value: engine.components.raisedBox.boxShadow,
     },
   }).buildCss();
 }

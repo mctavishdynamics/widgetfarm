@@ -102,6 +102,7 @@ export const DefaultWithDynamicContent: Story = {
   args: {
     defaultValue: "tab-1",
     renderOnlyActive: true,
+    activationMode: "manual",
     tabs: [
       {
         value: "tab-1",

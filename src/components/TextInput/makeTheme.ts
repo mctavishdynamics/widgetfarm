@@ -38,15 +38,15 @@ export function makeTheme(engine: Osmia) {
     // Background
 
     background: {
-      value: engine.backgroundColor.toHexString(),
+      value: engine.colors.background.base.toHexString(),
     },
 
     backgroundHover: {
-      value: engine.backgroundColor.toHexString(),
+      value: engine.colors.background.base.toHexString(),
     },
 
     backgroundActive: {
-      value: engine.active().backgroundColor.toHexString(),
+      value: engine.active().colors.backgroundColor.base.toHexString(),
     },
 
     // Border Colors

@@ -1,6 +1,6 @@
 import type { Osmia } from "./Osmia.ts";
 
-export class OsmiaComponent {
+export class OsmiaPart {
   protected engine: Osmia;
 
   constructor(engine: Osmia) {

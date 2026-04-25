@@ -1,4 +1,4 @@
-import { type ComplexStyleRule, style } from "@vanilla-extract/css";
+import { style, type StyleRule } from "@vanilla-extract/css";
 import type { DesignToken } from "../../theme/DesignTokens.ts";
 import { Theme } from "../../theme/Theme.ts";
 import { type ButtonState, DATA_SCOPE } from "./Button.tsx";
@@ -56,12 +56,14 @@ export interface ButtonDesignTokens {
   focusRingWidth: DesignToken<string>;
   focusRingStyle: DesignToken<string>;
   focusRingColor: DesignToken<string>;
+
+  boxShadow: DesignToken<string>;
 }
 
 export class ButtonTheme extends Theme<ButtonDesignTokens> {
   dataScope = DATA_SCOPE;
 
-  color(args: MixinArgs = {}): ComplexStyleRule {
+  color(args: MixinArgs = {}): StyleRule {
     const { state } = args;
 
     switch (state) {
@@ -74,7 +76,7 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
     }
   }
 
-  background(args: MixinArgs = {}): ComplexStyleRule {
+  background(args: MixinArgs = {}): StyleRule {
     const { state } = args;
 
     switch (state) {
@@ -87,7 +89,7 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
     }
   }
 
-  border(args: MixinArgs = {}): ComplexStyleRule {
+  border(args: MixinArgs = {}): StyleRule {
     let topColor = this.token("borderTopColor");
     let rightColor = this.token("borderRightColor");
     let bottomColor = this.token("borderBottomColor");
@@ -119,11 +121,12 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
     };
   }
 
-  boxShadow(_args: MixinArgs = {}): ComplexStyleRule {
-    return { boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)" };
+  boxShadow(): StyleRule {
+    return { boxShadow: this.token("boxShadow") };
+    // return { boxShadow: "0 1px 1px rgba(0, 0, 0, 0.1)" };
   }
 
-  boxModel(_args: MixinArgs = {}): ComplexStyleRule {
+  boxModel(_args: MixinArgs = {}): StyleRule {
     return {
       display: "flex",
       alignItems: "center",
@@ -138,7 +141,7 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
     };
   }
 
-  svg(_args: MixinArgs = {}): ComplexStyleRule {
+  svg(_args: MixinArgs = {}): StyleRule {
     return {
       [this.scopedSelector.parent.has("svg").build()]: {
         padding: [
@@ -174,6 +177,8 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
         borderRadius: `calc(${this.token("borderRadius")} + ${this.token("outlineWidth")})`,
 
         userSelect: "none",
+
+        ...this.boxShadow(),
       },
 
       // BUTTON
@@ -182,7 +187,6 @@ export class ButtonTheme extends Theme<ButtonDesignTokens> {
 
         ...this.background(),
         ...this.border(),
-        ...this.boxShadow(),
 
         [this.scopedSelector.dataPart("children").build()]: {
           whiteSpace: "nowrap",

@@ -5,8 +5,6 @@ const TAB_PADDING_X = "16px";
 const TAB_PADDING_Y = "8px";
 
 export function makeTheme(engine: Osmia) {
-  console.log(engine.hover().backgroundColor.toHexString());
-
   return new TabsTheme({
     // Color
 
@@ -44,141 +42,162 @@ export function makeTheme(engine: Osmia) {
     // BACKGROUND
 
     background: {
-      value: engine.raisedBox.backgroundColor.toHexString(),
+      value: engine.components.raisedBox.backgroundColor.toHexString(),
     },
 
     backgroundHover: {
-      // value: engine.debug("Something").hover().raisedBox.backgroundColor.toHexString(),
-      value: engine.hover().backgroundColor.toHexString(),
+      value: engine.hover().colors.background.base.toHexString(),
     },
 
     backgroundActive: {
-      value: engine.active().raisedBox.backgroundColor.toHexString(),
+      value: engine.active().components.raisedBox.backgroundColor.toHexString(),
     },
 
     backgroundSelected: {
-      value: engine.raisedBox.depressed().backgroundColor.toHexString(),
+      value: engine.components.raisedBox
+        .depressed()
+        .backgroundColor.toHexString(),
     },
 
     contentBackground: {
-      value: engine.backgroundColor.toHexString(),
+      value: engine.colors.background.base.toHexString(),
     },
 
     contentBackgroundHover: {
-      value: engine.hover().backgroundColor.toHexString(),
+      value: engine.hover().colors.background.base.toHexString(),
     },
 
     contentBackgroundActive: {
-      value: engine.active().backgroundColor.toHexString(),
+      value: engine.active().colors.background.base.toHexString(),
     },
 
     ////////////////////////////////////////////////////////////////////////////
     // BORDER
 
     borderTopColor: {
-      value: engine.raisedBox.borderTopColor.toHexString(),
+      value: engine.components.raisedBox.borderTopColor.toHexString(),
     },
 
     borderTopColorHover: {
-      value: engine.hover().raisedBox.borderTopColor.toHexString(),
+      value: engine.hover().components.raisedBox.borderTopColor.toHexString(),
     },
 
     borderTopColorActive: {
-      value: engine.active().raisedBox.borderTopColor.toHexString(),
+      value: engine.active().components.raisedBox.borderTopColor.toHexString(),
     },
 
     borderTopColorSelected: {
-      value: engine.raisedBox.depressed().borderTopColor.toHexString(),
+      value: engine.components.raisedBox
+        .depressed()
+        .borderTopColor.toHexString(),
     },
 
     borderRightColor: {
-      value: engine.raisedBox.borderRightColor.toHexString(),
+      value: engine.components.raisedBox.borderRightColor.toHexString(),
     },
 
     borderRightColorHover: {
-      value: engine.hover().raisedBox.borderRightColor.toHexString(),
+      value: engine.hover().components.raisedBox.borderRightColor.toHexString(),
     },
 
     borderRightColorActive: {
-      value: engine.active().raisedBox.borderRightColor.toHexString(),
+      value: engine
+        .active()
+        .components.raisedBox.borderRightColor.toHexString(),
     },
 
     borderRightColorSelected: {
-      value: engine.raisedBox.depressed().borderRightColor.toHexString(),
+      value: engine.components.raisedBox
+        .depressed()
+        .borderRightColor.toHexString(),
     },
 
     borderBottomColor: {
-      value: engine.raisedBox.borderBottomColor.toHexString(),
+      value: engine.components.raisedBox.borderBottomColor.toHexString(),
     },
 
     borderBottomColorHover: {
-      value: engine.hover().raisedBox.borderBottomColor.toHexString(),
+      value: engine
+        .hover()
+        .components.raisedBox.borderBottomColor.toHexString(),
     },
 
     borderBottomColorActive: {
-      value: engine.active().raisedBox.borderBottomColor.toHexString(),
+      value: engine
+        .active()
+        .components.raisedBox.borderBottomColor.toHexString(),
     },
 
     borderBottomColorSelected: {
-      value: engine.raisedBox.depressed().borderBottomColor.toHexString(),
+      value: engine.components.raisedBox
+        .depressed()
+        .borderBottomColor.toHexString(),
     },
 
     borderLeftColor: {
-      value: engine.raisedBox.borderLeftColor.toHexString(),
+      value: engine.components.raisedBox.borderLeftColor.toHexString(),
     },
 
     borderLeftColorHover: {
-      value: engine.hover().raisedBox.borderLeftColor.toHexString(),
+      value: engine.hover().components.raisedBox.borderLeftColor.toHexString(),
     },
 
     borderLeftColorActive: {
-      value: engine.active().raisedBox.borderLeftColor.toHexString(),
+      value: engine.active().components.raisedBox.borderLeftColor.toHexString(),
     },
 
     borderLeftColorSelected: {
-      value: engine.raisedBox.depressed().borderLeftColor.toHexString(),
+      value: engine.components.raisedBox
+        .depressed()
+        .borderLeftColor.toHexString(),
     },
 
     // Border Misc
 
     borderWidth: {
-      value: engine.raisedBox.borderWidth,
+      value: engine.components.raisedBox.borderWidth,
     },
 
     borderRadius: {
-      value: engine.raisedBox.borderRadius,
+      value: engine.components.raisedBox.borderRadius,
     },
 
     outlineWidth: {
-      value: engine.raisedBox.outlineWidth,
+      value: engine.components.raisedBox.outlineWidth,
     },
 
     outlineColor: {
-      value: engine.raisedBox.outlineColor.toHexString(),
+      value: engine.components.raisedBox.outlineColor.toHexString(),
     },
 
     focusOutlineWidth: {
-      value: engine.focusRingWidth,
+      value: engine.parts.outline.width,
     },
 
     focusOutlineStyle: {
-      value: engine.focusOutlineStyle,
+      value: engine.parts.focusRing.style,
     },
 
     focusOutlineColor: {
-      value: engine.focusOutlineColor.toHexString(),
+      value: engine.parts.focusRing.color.toHexString(),
     },
 
     focusRingWidth: {
-      value: engine.focusRingWidth,
+      value: engine.parts.focusRing.width,
     },
 
     focusRingStyle: {
-      value: engine.focusRingStyle,
+      value: engine.parts.focusRing.style,
     },
 
     focusRingColor: {
-      value: engine.focusRingColor.toHexString(),
+      value: engine.parts.focusRing.color.toHexString(),
+    },
+
+    focusRingOffset: { value: engine.parts.focusRing.offset },
+
+    boxShadow: {
+      value: engine.components.raisedBox.boxShadow,
     },
   }).buildCss();
 }

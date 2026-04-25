@@ -14,20 +14,26 @@ function engine() {
 }
 
 describe("backgroundColor", () => {
-  it("should return the background color", () => {
-    const color = engine().backgroundColor.toHexString();
+  it("DEFAULT STATE", () => {
+    const color = engine().colors.background.base.toHexString();
 
     expect(color).toBe(EXPECTED_BACKGROUND_COLOR);
   });
 
-  it("should return the hover background color", () => {
-    const color = engine().hover().backgroundColor.toHexString();
+  it("HOVER STATE", () => {
+    const color = engine().hover().colors.background.base.toHexString();
 
     expect(color).toBe(EXPECTED_HOVER_BACKGROUND_COLOR);
   });
 
-  it("should return the active background color", () => {
-    const color = engine().active().backgroundColor.toHexString();
+  it("ACTIVE STATE", () => {
+    const color = engine().active().colors.background.base.toHexString();
+
+    expect(color).toBe(EXPECTED_ACTIVE_BACKGROUND_COLOR);
+  });
+
+  it("INSET DEFAULT STATE", () => {
+    const color = engine().active().colors.background.base.toHexString();
 
     expect(color).toBe(EXPECTED_ACTIVE_BACKGROUND_COLOR);
   });

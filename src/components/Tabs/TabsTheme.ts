@@ -84,6 +84,8 @@ export interface TabsDesignTokens {
   //////////////////////////////////////////////////////////////////////////////
   // OUTLINE
 
+  boxShadow: DesignToken<string>;
+
   outlineWidth: DesignToken<string>;
   outlineColor: DesignToken<string>;
 
@@ -99,6 +101,7 @@ export interface TabsDesignTokens {
   focusRingWidth: DesignToken<string>;
   focusRingStyle: DesignToken<string>;
   focusRingColor: DesignToken<string>;
+  focusRingOffset: DesignToken<string>;
 }
 
 export class TabsTheme extends Theme<TabsDesignTokens> {
@@ -191,14 +194,20 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
       vars: this.designTokenManager.asCssVariables(),
 
       // ROOT
-      [this.scopedSelector.dataPart("root").parent.build()]: {},
+      [this.scopedSelector.dataPart("root").parent.build()]: {
+        position: "relative",
+      },
+
+      [this.scopedSelector.dataPart("list").build()]: {
+        boxShadow: this.token("boxShadow"),
+        borderRadius: this.token("borderRadius"),
+      },
 
       // TRIGGER
       [this.scopedSelector.dataPart("trigger").build()]: {
         all: "unset",
 
         ...this.withTab(),
-        ...this.withTabPadding(),
 
         ["&[data-position=first]"]: {
           borderRadius: [
@@ -219,8 +228,29 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
         },
       },
 
+      [this.scopedSelector.dataPart("label").build()]: {
+        display: "flex",
+        ...this.withTabPadding(),
+      },
+
       [this.scopedSelector.dataPart("trigger").selected().build()]: {
         ...this.withTab({ isSelected: true }),
+      },
+
+      [this.scopedSelector.dataPart("trigger").focusVisible.build()]: {
+        position: "relative",
+        zIndex: 1000,
+
+        outline: "2px solid black",
+
+        [this.scopedSelector.dataPart("label").build()]: {
+          outline: [
+            this.token("focusRingWidth"),
+            this.token("focusRingStyle"),
+            this.token("focusRingColor"),
+          ].join(" "),
+          outlineOffset: this.token("focusRingOffset"),
+        },
       },
 
       [this.scopedSelector.dataPart("trigger").notSelected().hover.build()]: {
@@ -231,7 +261,6 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
         ...this.withTab({ isActive: true }),
 
         [this.scopedSelector.dataPart("label").build()]: {
-          display: "flex",
           transform: "translateY(1px)",
         },
       },
