@@ -6,6 +6,7 @@ import type { FocusOutlineDesignTokenMixin } from "../../theme/designTokenMixins
 import type { FocusRingDesignTokenMixin } from "../../theme/designTokenMixins/FocusRingDesignTokenMixin.ts";
 import type { OutlineDesignTokenMixin } from "../../theme/designTokenMixins/OutlineDesignTokenMixin.ts";
 import type { PaddingDesignTokenMixin } from "../../theme/designTokenMixins/PaddingDesignTokenMixin.ts";
+import type { TypographyDesignTokenMixin } from "../../theme/designTokenMixins/TypographyDesignTokenMixin.ts";
 import type { DesignToken } from "../../theme/DesignTokens.ts";
 import { Theme } from "../../theme/Theme.ts";
 import { BackgroundMixin } from "../../theme/themeMixins/BackgroundMixin.ts";
@@ -15,6 +16,7 @@ import { FocusOutlineMixin } from "../../theme/themeMixins/FocusOutlineMixin.ts"
 import { FocusRingMixin } from "../../theme/themeMixins/FocusRingMixin.ts";
 import { OutlineMixin } from "../../theme/themeMixins/OutlineMixin.ts";
 import { PaddingMixin } from "../../theme/themeMixins/PaddingMixin.ts";
+import { TypographyMixin } from "../../theme/themeMixins/TypographyMixin.ts";
 import { DATA_SCOPE } from "./Tabs.tsx";
 
 export interface MixinArgs {
@@ -34,7 +36,8 @@ export interface TabsDesignTokens
     OutlineDesignTokenMixin,
     PaddingDesignTokenMixin,
     FocusOutlineDesignTokenMixin,
-    FocusRingDesignTokenMixin {
+    FocusRingDesignTokenMixin,
+    TypographyDesignTokenMixin {
   backgroundSelected: DesignToken<string>;
 
   borderTopColorSelected: DesignToken<string>;
@@ -68,6 +71,7 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
   paddingMixin = new PaddingMixin(this);
   focusRingMixin = new FocusRingMixin(this);
   focusOutlineMixin = new FocusOutlineMixin(this);
+  typographyMixin = new TypographyMixin(this);
 
   withBackgroundColor(args: MixinArgs = {}): StyleRule {
     const { isSelected = false } = args;
@@ -144,6 +148,7 @@ export class TabsTheme extends Theme<TabsDesignTokens> {
 
       [this.scopedSelector.dataPart("label").build()]: {
         display: "flex",
+        ...this.typographyMixin.withTypography(),
         ...this.paddingMixin.withPadding(),
       },
 

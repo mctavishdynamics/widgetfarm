@@ -40,6 +40,9 @@
   "devDependencies": {
     "@ast-grep/cli": "^0.42.1",
     "@eslint/js": "^9.39.4",
+    "@fontsource-variable/geist-mono": "^5.2.7",
+    "@fontsource-variable/ibm-plex-sans": "^5.2.8",
+    "@fontsource-variable/recursive": "^5.2.8",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
     "@types/node": "^25.6.0",
@@ -67,6 +70,7 @@
   "dependencies": {
     "@ark-ui/react": "^5.36.2",
     "@ctrl/tinycolor": "^4.2.0",
+    "@fontsource/geist-sans": "^5.2.5",
     "@zag-js/checkbox": "^1.40.0",
     "@zag-js/clipboard": "^1.40.0",
     "@zag-js/dialog": "^1.40.0",

@@ -1,6 +1,8 @@
 import type { Preview } from "@storybook/react-vite";
-import "../src/colors.css";
-import "../src/style.css";
+
+// Supports weights 100-700
+// @ts-expect-error import
+import "@fontsource-variable/ibm-plex-sans/wdth.css";
 
 const preview: Preview = {
   parameters: {

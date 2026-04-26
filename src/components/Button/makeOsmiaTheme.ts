@@ -1,7 +1,10 @@
 import type { Osmia } from "../../theme/engines/osmia/Osmia.ts";
 import { ButtonTheme } from "./ButtonTheme.ts";
 
-export function makeTheme(engine: Osmia) {
+const BUTTON_PADDING_X = "10px";
+const BUTTON_PADDING_Y = "6px";
+
+export function makeOsmiaTheme(engine: Osmia) {
   return new ButtonTheme({
     // Color
 
@@ -20,19 +23,19 @@ export function makeTheme(engine: Osmia) {
     // Padding
 
     paddingTop: {
-      value: "6px",
+      value: BUTTON_PADDING_Y,
     },
 
     paddingRight: {
-      value: "6px",
+      value: BUTTON_PADDING_X,
     },
 
     paddingBottom: {
-      value: "6px",
+      value: BUTTON_PADDING_Y,
     },
 
     paddingLeft: {
-      value: "6px",
+      value: BUTTON_PADDING_X,
     },
 
     // Background
@@ -108,19 +111,27 @@ export function makeTheme(engine: Osmia) {
     // Border Misc
 
     borderWidth: {
-      value: "2px",
+      value: engine.components.raisedBox.borderWidth,
     },
 
     borderRadius: {
-      value: "4px",
+      value: engine.components.raisedBox.borderRadius,
     },
 
     outlineWidth: {
-      value: "1px",
+      value: engine.components.raisedBox.outlineWidth,
+    },
+
+    outlineStyle: {
+      value: engine.components.raisedBox.outlineStyle,
     },
 
     outlineColor: {
-      value: engine.colors.backdropContrast.base.toHexString(),
+      value: engine.components.raisedBox.outlineColor.toHexString(),
+    },
+
+    outlineOffset: {
+      value: engine.components.raisedBox.outlineOffset,
     },
 
     focusOutlineWidth: {
@@ -135,6 +146,10 @@ export function makeTheme(engine: Osmia) {
       value: engine.parts.focusOutline.color.toHexString(),
     },
 
+    focusOutlineOffset: {
+      value: engine.parts.focusOutline.offset,
+    },
+
     focusRingWidth: {
       value: engine.parts.focusRing.width,
     },
@@ -147,8 +162,20 @@ export function makeTheme(engine: Osmia) {
       value: engine.parts.focusRing.color.toHexString(),
     },
 
+    focusRingOffset: {
+      value: engine.parts.focusRing.offset,
+    },
+
     boxShadow: {
       value: engine.components.raisedBox.boxShadow,
+    },
+
+    fontFamily: {
+      value: "IBM Plex Sans Variable, sans-serif",
+    },
+
+    fontVariationSettings: {
+      value: '"wdth" 75',
     },
   }).buildCss();
 }

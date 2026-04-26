@@ -4,9 +4,9 @@ export interface BorderDesignTokenMixin {
   borderRadius: DesignToken<string>;
   borderWidth: DesignToken<string>;
 
-  borderColor: DesignToken<string>;
-  borderColorHover: DesignToken<string>;
-  borderColorActive: DesignToken<string>;
+  borderColor?: DesignToken<string>;
+  borderColorHover?: DesignToken<string>;
+  borderColorActive?: DesignToken<string>;
 
   borderTopColor: DesignToken<string>;
   borderRightColor: DesignToken<string>;

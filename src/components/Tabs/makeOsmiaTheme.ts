@@ -1,8 +1,8 @@
 import type { Osmia } from "../../theme/engines/osmia/Osmia.ts";
 import { TabsTheme } from "./TabsTheme.ts";
 
-const TAB_PADDING_X = "16px";
-const TAB_PADDING_Y = "8px";
+const TAB_PADDING_X = "10px";
+const TAB_PADDING_Y = "6px";
 
 export function makeOsmiaTheme(engine: Osmia) {
   return new TabsTheme({
@@ -231,5 +231,13 @@ export function makeOsmiaTheme(engine: Osmia) {
     },
 
     focusRingOffset: { value: engine.parts.focusRing.offset },
+
+    fontFamily: {
+      value: "IBM Plex Sans Variable, sans-serif",
+    },
+
+    fontVariationSettings: {
+      value: '"wdth" 75',
+    },
   }).buildCss();
 }
